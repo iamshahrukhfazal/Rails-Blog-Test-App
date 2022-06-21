@@ -1,0 +1,44 @@
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @post.status %>
+</p>
+<p>
+  <strong>Links:</strong>
+  <%= @post.links %>
+</p>
+
+<div class="">
+  <div id="show-post-like">
+    <%=render partial: "likes/likeBtn", locals:{likeable:@post}%>
+  </div>
+  <div class="">
+    <%= form_with(model: @post, local: false) do |form| %>
+    <div class="field">
+      <%= form.label :status %>
+      <%= form.select :status, Report.report_statuses%>
+    </div>
+    <div class="actions d-inline">
+      <%= form.submit "Report Post", :class=>"btn btn-primary h-13 " %>
+    </div>
+
+
+    <%end%>
+  </div>
+</div>
+    <strong>
+    COMMENTS
+    <strong>
+    <div id="post_comment">
+      <%= render @post.comments.where(parent_id: nil).order(id: :desc)%>
+    </div>
+    <div>
+      <%= render partial:"comments/form", locals:{post:@post, parent: nil} %>
+
+      <%= link_to 'Edit', edit_post_path(@post) %> |
+      <%= link_to 'Back', posts_path %>
+    </div>

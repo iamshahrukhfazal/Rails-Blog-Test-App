@@ -1,0 +1,2 @@
+
+ $("#post_comment").empty().append("<%= j render @post.comments.where(parent_id: nil).order(id: :desc)%>");

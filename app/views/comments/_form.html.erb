@@ -1,0 +1,39 @@
+<%
+=begin%>
+ <form action="<%= post_comments_path(post)%>" method="POST">
+    <input type="hidden" name=authenticity_token">
+
+    <textarea name="comments[content]" id="" row="4" cols="40"></textarea>
+
+    <input type="submit" value="Submit ">
+</form> 
+<%
+=end%>
+
+<%= form_tag( post_comments_path(post) , remote: true) do |f| %>
+    <%if !parent.nil?%>
+        <input  type="hidden" name="comments[parent_id]" value="<%= parent.id%>">
+    <%end%>
+
+            
+    <div class="d-flex">
+        <p class="mb-0 mr-4">Like</p>
+        <div>
+            <p class="reply mb-0">Reply</p>
+            <div class="reply-box justify-content-center">
+                <textarea name="comments[content]" id="" row="4" cols="80"></textarea>
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </div>
+    </div>
+     
+<% end %>
+
+<script>
+document.querySelectorAll(".reply").forEach(element => {
+    element.addEventListener("click",(e)=>{
+        e.preventDefault();
+        element.nextElementSibling.style= "display:flex;"
+    })
+});
+</script>
