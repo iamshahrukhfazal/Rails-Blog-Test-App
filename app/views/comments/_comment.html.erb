@@ -21,20 +21,14 @@
     <%=render partial: "likes/likeBtn", locals:{likeable:comment}%>
     <div>
       <div class="d-inline">
-        <%= form_with(model: @post, local: false) do |form| %>
-        <div class="field d-inline">
-          <%= form.label :status %>
-          <%= form.select :status, Report.report_statuses%>
+         <div id="report_<%= comment.id%>">
+            <%=  render partial:"reports/form", locals:{ reportable:comment }%>
         </div>
-        <div class="actions d-inline">
-          <%= form.submit "Report Comment", :class=>"btn btn-primary h-13 " %>
-        </div>
-        <%end%>
       </div>
     </div>
     <hr />
-    <%= render partial:"comments/form", locals:{post:comment.post, parent:comment} %>
 
+    <%= render partial:"comments/form", locals:{post:comment.post, parent:comment} %>
     <div class="sub-comments">
       <%=  render comment.comments%>
     </div>

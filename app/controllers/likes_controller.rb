@@ -2,15 +2,8 @@ class LikesController < ApplicationController
     
   
     def create
+        @report = Report.new
         @like = current_user.likes.new(like_params)
-        # if !@like.save
-        #     flash[:notice] = @like.errors.full_messages.to_sentence
-        # end
-        # redirect_back(fallback_location:post_url)
- 
-
-
-
         respond_to do |format|
             if @like.save
               @post = @like.likeable.post
@@ -24,11 +17,11 @@ class LikesController < ApplicationController
               format.js
             end
         end
-
-    
     end
 
     def destroy
+         @report = Report.new
+
         @like = current_user.likes.find(params[:id])
         @post = @like.likeable.post
         @like.destroy

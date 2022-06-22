@@ -1,0 +1,18 @@
+
+ <% like = current_user.reports.find_by(reportable:reportable)%>
+
+        <%if like.nil?%>
+           <%= form_with(model:@report, local: false) do |form| %>
+                <div class="field">
+                    <%= form.label :status %>
+                    <%= form.select :report_status, Report.report_statuses%> 
+                </div>
+                <input type="hidden" name="report[reportable_id]" value=" <%=reportable.id %>">
+                <input type="hidden" name="report[reportable_type]" value="<%=reportable.class.to_s%>">
+                <div class="actions d-inline">
+                    <input type="submit" value="Report Post">
+                </div>
+            <%end%>
+        <%else%>
+            <div></div>
+        <% end %>

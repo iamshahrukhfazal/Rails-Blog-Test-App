@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
 
     def create
+    @report = Report.new
+
         @comment = current_user.comments.create(comment_params)
         
         respond_to do |format|
