@@ -7,11 +7,13 @@ Rails.application.routes.draw do
   resources :reports, only: [:create, :destroy]
 
 
-  resources :posts do
+  resources :posts, shallow: true do
     resources :comments, only: [:create]
+    resources :suggestions
+
   end
 
-  
+
   root to:'pages#home'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

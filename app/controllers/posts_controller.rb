@@ -5,12 +5,16 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @post = Post.new
+    @suggestion = Suggestion.new
+
   end
 
   # GET /posts/1 or /posts/1.json
   def show
     @post  = Post.find(params[:id])
     @report = Report.new
+    @suggestion = Suggestion.new
+
   end
 
   # GET /posts/new
@@ -40,7 +44,7 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
         format.js
       end
-      end
+    end
   
   end
 

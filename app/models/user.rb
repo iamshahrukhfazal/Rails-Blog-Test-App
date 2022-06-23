@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :reports
+  has_many :suggestions
+
 
   # has_one_attached :image
 

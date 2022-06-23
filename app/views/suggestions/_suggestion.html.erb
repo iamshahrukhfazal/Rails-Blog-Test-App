@@ -1,0 +1,37 @@
+<div class="suggestion_holder">
+
+<%= suggestion.updated_at.strftime('%m/%d/%Y')%>
+<div class="suggestion-heder">
+  <%= suggestion.user.email%>  <div class="status-containor" id="suggestion_status_<%= suggestion.id%>"> Status :  <%= suggestion.status%></div>
+
+</div>   
+   <br/>
+   <div class="suggestion-content">
+    <%= suggestion.content%> 
+   </div>
+    <% if @isUserPost%>
+        <div class="update_post_suggestion_status_<%= suggestion.id%>">
+             <%= form_tag( suggestion_path(suggestion) , remote: true) do |form| %>
+                <div class="d-flex">
+                    <div class="field">
+                        <label>Select</label>
+                        <%= select_tag "suggestion[status]", options_for_select(Suggestion.statuses,:name) %>
+                    </div>
+                    <input type="hidden" name="_method" value="PATCH">
+                    <div class="actions d-inline ml-4">
+                        <input type="submit" value="Report Post">
+                    </div>
+                </div>
+
+            <% end %>
+        </div>
+    <%else%>
+        <div>
+           
+        </div>
+    <%end%>
+
+
+
+
+</div>

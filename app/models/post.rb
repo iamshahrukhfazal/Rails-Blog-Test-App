@@ -5,5 +5,6 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :likes, as: :likeable
   has_many :reports, as: :reportable
+  has_many :suggestions
 
 end
