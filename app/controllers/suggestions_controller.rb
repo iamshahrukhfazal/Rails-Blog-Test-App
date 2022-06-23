@@ -26,9 +26,11 @@ class SuggestionsController < ApplicationController
     end
     def update 
         @suggestion = Suggestion.find(params[:id])
+       
+        puts suggestion_params
         
         respond_to do |format|
-            if @suggestion.update({"status"=>suggestion_params[:status]})
+            if @suggestion.update(suggestion_params)
               format.html { redirect_to post_url(@suggestion), notice: "Post was successfully updated." }
               format.json { render :show, status: :ok, location: @suggestion }
               format.js
@@ -51,9 +53,12 @@ class SuggestionsController < ApplicationController
     end
     private
     def suggestion_params
-     
-        params.require(:suggestion).permit(:status,:content,:id)
-        .merge(post_id:params[:post_id])
+        if params[:post_id]==nil
+            params.require(:suggestion).permit(:status,:content,:id,:message)
+        else
+            params.require(:suggestion).permit(:status,:content,:id,:message)
+            .merge(post_id:params[:post_id]) 
+        end
 
     end
 
