@@ -1,6 +1,8 @@
 <div class="suggestion_holder">
 
-<%= suggestion.updated_at.strftime('%m/%d/%Y')%>
+<%= link_to "View Post",post_path(suggestion.post) %> |
+<%= suggestion.updated_at.strftime('%m/%d/%Y')%> 
+
 <div class="suggestion-heder">
   <%= suggestion.user.email%>  <div class="status-containor" id="suggestion_status_<%= suggestion.id%>"> Status :  <%= suggestion.status%></div>
 

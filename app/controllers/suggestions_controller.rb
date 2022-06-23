@@ -3,6 +3,9 @@ class SuggestionsController < ApplicationController
     def index
         @suggestion = Suggestion.all
     end
+    def show 
+        @mySuggestion = Suggestion.mySuggestions(current_user.id)
+    end
     def index 
         @post = Post.find(params[:post_id])
         @suggestions = @post.suggestions
