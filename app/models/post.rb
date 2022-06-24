@@ -2,9 +2,9 @@ class Post < ApplicationRecord
   enum status: { published: "published", draft: "draft", unpublished: "unpublished" }
   
   belongs_to :user
-  has_many :comments
-  has_many :likes, as: :likeable
-  has_many :reports, as: :reportable
-  has_many :suggestions
+  has_many :comments, dependent: :destroy
+  has_many :likes, as: :likeable, dependent: :destroy
+  has_many :reports, as: :reportable, dependent: :destroy
+  has_many :suggestions, dependent: :destroy
 
 end

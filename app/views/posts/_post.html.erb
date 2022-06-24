@@ -4,13 +4,30 @@
 
     <div class="blog-header">
       <div class="blog-author--no-cover">
-        <h3><%= post.user.email%></h3>
+        <h3><%= post.user.email%> | <%= post.status%></h3>
       </div>
+      <%if current_user.role === "moderator"%>
+
+        <%= form_with(model: post, local: false) do |form| %>
+          <div class="d-flex ">
+              <div class="field">
+                <%= form.label :status %>
+                <%= form.select :status, Post.statuses%>
+              </div>
+              <div class="actions">
+                <%= form.submit :class=>"btn btn-primary w-100" %>
+              </div> 
+          </div>
+        <% end %>
+      <%else%>
+
+      <%end%>
     </div>
 
     <div class="blog-body">
       <div class="blog-title">
         <h1><%= link_to post.content, post %></h1>
+
       </div>
       <div class="blog-summary">
         <p>Here is an example of a post without a cover image. You don't always have to have a cover image. In fact,

@@ -4,18 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :posts
-  has_many :comments
-  has_many :likes
-  has_many :reports
-  has_many :suggestions
-
-
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :reports, dependent: :destroy
+  has_many :suggestions,dependent: :destroy
   # has_one_attached :image
-
-
-  enum role: [:user,:moderator, :admin]
-
+  enum role: ["user","moderator", "admin"]
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role 

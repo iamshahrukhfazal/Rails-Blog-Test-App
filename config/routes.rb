@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
 
 
@@ -8,11 +9,14 @@ Rails.application.routes.draw do
 
 
   resources :posts, shallow: true do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create,:destroy]
     resources :suggestions
-
   end
 
+  
+
+  get "/reportedpost", to:"reports#all_reported_post"
+  get "/reportedcomment", to:"reports#all_reported_comment"
 
   root to:'pages#home'
 

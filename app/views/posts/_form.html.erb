@@ -19,17 +19,6 @@
     <%= form.label :status %>
     <%= form.select :status, Post.statuses%>
   </div>
-
-  <%
-=begin%>
- <div class="field">
-    <%= form.label :links %>
-    <%= form.text_field :links %>
-  </div> 
-<%
-=end%>
-
-
  <div class="actions">
     <%= form.submit :class=>"btn btn-primary w-100" %>
   </div> 

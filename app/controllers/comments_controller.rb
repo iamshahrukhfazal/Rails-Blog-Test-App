@@ -26,6 +26,16 @@ class CommentsController < ApplicationController
         # redirect_to post_path(params[:post_id]) 
     end
 
+    def destroy
+      @comment.destroy
+  
+      respond_to do |format|
+        format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+        format.json { head :no_content }
+        format.js
+      end
+    end
+
     private
     def comment_params
         params.require(:comments).permit(:content, :parent_id)

@@ -1,0 +1,17 @@
+<div id="reported_post_<%=reported_post.reportable.id%>" class="d-flex m-3">
+    <%=reported_post.id%>
+    <%=reported_post.reportable.user.email%>
+    <%=reported_post.reportable.content%>
+    <%statuses = reported_post.reportable.reports.group(:report_status).size%>
+    |
+    <%statuses.each do | item, price |%>
+        <%= "#{item} - #{price}"%>
+   <%end%>
+     <div class="ml-4">
+        <%= form_tag( post_path(reported_post.reportable) , remote: true) do |f| %>
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete">
+        <% end %>
+    </div>
+
+</div>

@@ -29,6 +29,16 @@ class ReportsController < ApplicationController
             format.js
         end
     end
+
+    def all_reported_post   
+        @reported_posts = Report.reported_post.reported_status
+        
+    end
+    def all_reported_comment
+        @reported_comments = Report.reported_comment.reported_status
+    end
+
+
     private
     def report_params
         params.require(:report).permit(:reportable_id,:reportable_type,:report_status)
