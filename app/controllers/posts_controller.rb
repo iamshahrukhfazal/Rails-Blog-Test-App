@@ -20,7 +20,6 @@ class PostsController < ApplicationController
     @report = Report.new
     @suggestion = Suggestion.new
 
-
     authorize Post
 
 

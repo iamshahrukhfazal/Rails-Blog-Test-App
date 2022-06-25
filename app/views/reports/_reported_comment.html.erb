@@ -1,19 +1,32 @@
-<div id="reported_comment_<%= reported_comment.reportable.id%>" class="d-flex m-3">
-    Comment
-    <%=reported_comment.id%>
+<div id="reported_comment_<%= reported_comment.reportable.id%>" class="comment-card">
 
-    <%=reported_comment.reportable.user.email%>
-    <%=reported_comment.reportable.content%>
-    <%statuses = reported_comment.reportable.reports.group(:report_status).size%>
-    |
-    <%statuses.each do | item, price |%>
-        <%= "#{item} - #{price}"%>
-   <%end%>k
+    <div class="mb-2">
+        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 50px;"
+        alt="Avatar" /> | 
+        <%=reported_comment.reportable.id%>
 
-    <div class="ml-4">
+        <%=reported_comment.reportable.user.email%>
+        
+    </div>
+    <div class="reported-message-content mb-2">
+        <%=reported_comment.reportable.content%>
+    </div>
+    <div class="reported-comment-statuses">
+        <%statuses = reported_comment.reportable.reports.group(:report_status).size%>
+        
+
+        <%statuses.each do | item, price |%>
+            <button type="button" disabled class="btn btn-danger">
+                <%=item%> <span class="badge badge-light"><%= price%></span>
+                <span class="sr-only">unread messages</span>
+            </button>
+        <%end%>
+    </div>
+
+    <div class="mt-3">
         <%= form_tag(comment_path(reported_comment.reportable) , remote: true) do |f| %>
             <input type="hidden" name="_method" value="DELETE">
-            <input type="submit" value="Delete">
+            <input type="submit" value="Delete" class="btn btn-danger w-100">
         <% end %>
     </div>
 

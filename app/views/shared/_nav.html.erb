@@ -11,6 +11,17 @@
       <li class="nav-item">
         <a class="nav-link" href="<%= posts_path%>">All Post</a>
       </li>
+      <%if current_user && current_user.role==="moderator"%>
+          <li class="nav-item">
+            <a class="nav-link" href="/reportedpost">Reported Post</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="reportedcomment">Reported Comments</a>
+          </li>
+      <%else%>
+        <div></div>
+      <%end%>
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
       </li>

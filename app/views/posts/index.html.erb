@@ -32,14 +32,10 @@
 
  <div id="post_containor">
     <%if current_user.role === "moderator"%>
-
         <%= render @posts.where(status: "unpublished")%> 
     <%else%>
-      
-          
         <%= render @posts%> 
     <%end%>
-
  </div>
 
 <table>

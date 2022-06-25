@@ -22,8 +22,22 @@ class Report < ApplicationRecord
   # scope :reported_post, -> {Report.where(`report_status IS NOT NULL `)}
 
 
-  # def self.reported_comment
-  #   Report.where("report_status IS NOT NULL")
-  # end
+  def self.remove_comment_dup
+   data =  Report.reported_comment.reported_status
+   data.uniq{ |a_track|
+    [
+      a_track[:reportable_id],
+    ]
+  }
+  end
+
+  def self.remove_post_dup
+    data =  Report.reported_post.reported_status
+    data.uniq{ |a_track|
+     [
+       a_track[:reportable_id],
+     ]
+   }
+   end
 
 end

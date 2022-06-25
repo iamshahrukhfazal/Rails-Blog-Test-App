@@ -19,16 +19,16 @@ class CommentsController < ApplicationController
         end
 
 
-        # if !@comment.save
-        #     flash[:notice] = @comment.errors.full_messages.to_sentence 
-        # end 
-
-        # redirect_to post_path(params[:post_id]) 
     end
 
     def destroy
+     
+
+      @comment = Comment.find(params[:id])
       @comment.destroy
-  
+      
+
+
       respond_to do |format|
         format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
         format.json { head :no_content }

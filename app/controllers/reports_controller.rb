@@ -31,11 +31,11 @@ class ReportsController < ApplicationController
     end
 
     def all_reported_post   
-        @reported_posts = Report.reported_post.reported_status
+        @reported_posts = Report.remove_post_dup
         
     end
     def all_reported_comment
-        @reported_comments = Report.reported_comment.reported_status
+        @reported_comments = Report.remove_comment_dup
     end
 
 
