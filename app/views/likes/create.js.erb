@@ -1,1 +1,6 @@
- $("#post_comment").empty().append(`<%= j render @post.comments.where(parent_id: nil).order(id: :desc)%>`);
+<%if(@like_class)%>
+    $("#post_comment").empty().append(`<%= j render @post.likeable.post.comments.where(parent_id: nil).order(id: :desc)%>`);
+<%else%>
+    $("#testing").empty().append(`<%= j render partial: "likes/likeBtn", locals:{likeable:@post.likeable}%>`);
+<%end%>
+   

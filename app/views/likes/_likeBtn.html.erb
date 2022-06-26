@@ -1,8 +1,9 @@
-<div id="post_comment_<%=likeable.id%>">
-    <%= likeable.likes.count%> likes
-</div>
 
-<div>
+
+<div id="testing">
+    <div id="post_comment_<%=likeable.id%>">
+        <%= likeable.likes.count%> likes
+    </div>
     <div id="likecount_<%=likeable.id%>_<%=likeable.user.id %>">
         <% like = current_user.likes.find_by(likeable:likeable)%>
 
