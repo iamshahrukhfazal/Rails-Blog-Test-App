@@ -1,0 +1,10 @@
+
+
+<div id="c_post_<%= comment.id%>" class="comment-card">
+    <%= comment.user.email%>
+    
+     :: <%= comment.content%>
+    <a href="<%=post_path(comment.post.id)%>">View Post</a>
+    
+    <%= comment.updated_at%>
+</div>

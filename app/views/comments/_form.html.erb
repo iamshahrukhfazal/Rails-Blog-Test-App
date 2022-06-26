@@ -14,9 +14,7 @@
     <%if !parent.nil?%>
         <input  type="hidden" name="comments[parent_id]" value="<%= parent.id%>">
     <%end%>
-
     <div class="d-flex">
-        <p class="mb-0 mr-4">Like</p>
         <div>
             <p class="reply mb-0">Reply</p>
             <div class="reply-box justify-content-center">
@@ -27,6 +25,7 @@
     </div>
      
 <% end %>
+    <hr />
 
 <script>
 document.querySelectorAll(".reply").forEach(element => {

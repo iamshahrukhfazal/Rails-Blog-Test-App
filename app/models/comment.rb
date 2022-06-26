@@ -7,4 +7,8 @@ class Comment < ApplicationRecord
     has_many :likes, as: :likeable, dependent: :destroy
     has_many :reports, as: :reportable, dependent: :destroy
 
+
+    def self.lastComments 
+        Comment.last(10)
+    end
 end

@@ -7,5 +7,7 @@ class Post < ApplicationRecord
   has_many :reports, as: :reportable, dependent: :destroy
   has_many :suggestions, dependent: :destroy
   has_rich_text :content
-
+  def self.lastPosts
+    Post.last(10)
+end
 end

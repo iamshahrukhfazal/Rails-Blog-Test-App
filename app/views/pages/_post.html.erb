@@ -1,0 +1,16 @@
+
+<div id="c_post_<%= post.id%>" class="comment-card">
+      <%= post.user.email%>
+    
+     <%
+=begin%>
+ :: <%= post.content%> 
+<%
+=end%>
+    <a href="<%=post_path(post)%>">View Post</a>
+     Like (<%= post.likes.count%>)
+     Comments (<%= post.comments.count%>)
+
+    
+    <%= post.updated_at%>
+</div>

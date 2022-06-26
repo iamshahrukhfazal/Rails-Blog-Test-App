@@ -1,0 +1,7 @@
+
+
+<div id="c_post_<%= like.id%>" class="comment-card d-flex">
+    <%= like.user.email%>
+    <a href="<%=post_path(like.post.id)%>">View Post</a>
+    <%= like.updated_at%>
+</div>

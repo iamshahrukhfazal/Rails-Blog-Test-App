@@ -1,6 +1,19 @@
-<h1>Pages#home</h1>
-<%= link_to "Sign Up", new_user_registration_path%>
-<%= link_to "Sign In", new_user_session_path%>
 
-<%= link_to "Logout", destroy_user_session_path, method: :delete%>
+<div class="home">
+
+    <div>
+        MOST RECIENT POST
+    </div>
+    <%= render partial: "pages/post", collection: @posts %>
+    <div>
+        MOST RECIENT COMMENT
+    </div>
+    <%= render partial: "pages/comment", collection: @comments %>
+
+
+    <div>
+        MOST RECIENT LIKES
+    </div>
+    <%= render partial: "pages/like", collection: @comments %>
+<div>
 
