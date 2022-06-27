@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 class CommentPolicy < ApplicationPolicy
   def create?
-    ["user","admin"].include?(@user.role)
+    %w[user admin].include?(@user.role)
   end
 
   def destroy?
-    ["modrator","admin"].include?(@user.role)
+    %w[modrator admin].include?(@user.role)
   end
-
 end

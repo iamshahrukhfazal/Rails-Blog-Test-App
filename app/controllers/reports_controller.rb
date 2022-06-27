@@ -21,7 +21,6 @@ class ReportsController < ApplicationController
   end
 
   def destroy
-
     authorize Report
     @report = current_user.reports.find(params[:id])
     @post = @report.reportable
@@ -37,13 +36,11 @@ class ReportsController < ApplicationController
   def all_reported_post
     @reported_posts = Report.remove_post_dup
     authorize Report
-
   end
 
   def all_reported_comment
     @reported_comments = Report.remove_comment_dup
     authorize Report
-
   end
 
   private

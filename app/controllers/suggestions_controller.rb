@@ -36,7 +36,6 @@ class SuggestionsController < ApplicationController
   end
 
   def update
-
     authorize Suggestion
     @suggestion = Suggestion.find(params[:id])
     respond_to do |format|

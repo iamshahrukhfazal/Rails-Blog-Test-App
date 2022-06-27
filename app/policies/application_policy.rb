@@ -6,9 +6,8 @@ class ApplicationPolicy
   def initialize(user, record)
     @user = user
     @record = record
-    @roles_admin_moderator = ["moderator","admin"]
-    @roles_admin_user = ["moderator","admin"]
-
+    @roles_admin_moderator = %w[moderator admin]
+    @roles_admin_user = %w[moderator admin]
   end
 
   def index?

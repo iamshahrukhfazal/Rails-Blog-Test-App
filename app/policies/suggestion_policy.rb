@@ -1,11 +1,15 @@
+# frozen_string_literal: true
+
 class SuggestionPolicy < ApplicationPolicy
   def index?
-    ["admin","user","modrator"].include?(@user.role)
+    %w[admin user modrator].include?(@user.role)
   end
+
   def show?
-    ["admin","user"].include?(@user.role)
-  end 
+    %w[admin user].include?(@user.role)
+  end
+
   def update?
-    ["admin","user"].include?(@user.role)
+    %w[admin user].include?(@user.role)
   end
 end
