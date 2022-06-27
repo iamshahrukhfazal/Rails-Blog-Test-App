@@ -10,7 +10,7 @@
 <%
 =end%>
 
-<%= form_tag( post_comments_path(post) , remote: true) do |f| %>
+<%= form_with( url:post_comments_path(post) , remote: false) do |f| %>
     <%if !parent.nil?%>
         <input  type="hidden" name="comments[parent_id]" value="<%= parent.id%>">
     <%end%>
@@ -18,7 +18,13 @@
         <div>
             <p class="reply mb-0">Reply</p>
             <div class="reply-box justify-content-center">
-                <textarea name="comments[content]" id="" row="4" cols="80"></textarea>
+                <%
+=begin%>
+ <textarea name="comments[content]" id="" row="4" cols="80"></textarea> 
+<%
+=end%>
+                <%= f.rich_text_area :content, :class=>"form-control", :id=>"exampleFormControlTextarea1", :rows=>"3"%>
+
                 <input type="submit" value="Submit" class="btn btn-primary">
             </div>
         </div>

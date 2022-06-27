@@ -8,6 +8,7 @@ class Comment < ApplicationRecord
   has_many :comments, foreign_key: 'parent_id', dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :reports, as: :reportable, dependent: :destroy
+  has_rich_text :content
 
   def self.lastComments
     Comment.last(10)

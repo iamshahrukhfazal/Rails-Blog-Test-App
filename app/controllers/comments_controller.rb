@@ -3,9 +3,10 @@
 class CommentsController < ApplicationController
   def create
     @report = Report.new
+    byebug
 
-    @comment = current_user.comments.create(comment_params)
-
+    @comment = current_user.comments.new(comment_params)
+    byebug
     respond_to do |format|
       if @comment.save
         @post = @comment.post
@@ -35,5 +36,6 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comments).permit(:content, :parent_id)
           .merge(post_id: params[:post_id])
+    byebug
   end
 end
