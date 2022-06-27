@@ -13,4 +13,4 @@ class PostPolicy < ApplicationPolicy
   end
 end
 
-5
+
