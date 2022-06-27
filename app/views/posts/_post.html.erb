@@ -4,7 +4,7 @@
 
     <div class="blog-header">
       <div class="blog-author--no-cover">
-        <h3><%= post.user.email%> | <%= post.status%></h3>
+        <h3><%= post.user.email%> | <%= post.status%> | <%= link_to "Post", post_path(post.id) %></h3> 
       </div>
       <%if current_user.role === "moderator"%>
 

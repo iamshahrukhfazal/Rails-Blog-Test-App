@@ -1,5 +1,17 @@
+<%if @suggestions.length>0%>
+    <%= link_to "Back to Post",post_path(@suggestions.first.post.id) %>
+    <div class="suggestion_containor">
+        <%= render @suggestions%>
+    </div>
 
-<%= link_to "Back to Post",post_path(@suggestions.first.post.id) %>
-<div class="suggestion_containor">
-    <%= render @suggestions%>
-</div>
+<%else%>
+    <div>
+        <%= link_to "Back to Post",post_path(@suggestions) %>
+
+        No Record Exits
+    </div>
+<%end%>
+
+
+
+

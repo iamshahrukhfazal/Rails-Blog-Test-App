@@ -8,6 +8,9 @@ class SuggestionPolicy < ApplicationPolicy
   def show?
     %w[admin user].include?(@user.role)
   end
+  def create?
+    %w[admin user].include?(@user.role)
+  end
 
   def update?
     %w[admin user].include?(@user.role)
