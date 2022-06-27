@@ -11,14 +11,6 @@
     </div>
   <% end %>
 
-  <%
-=begin%>
- <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, :class=>"form-control", :id=>"exampleFormControlTextarea1", :rows=>"3"%>
-  </div> 
-<%
-=end%>
 
     <div class="field">
     <%= form.label :content %>
@@ -26,7 +18,8 @@
   </div>
   <div class="field">
     <%= form.label :status %>
-    <%= form.select :status, Post.statuses%>
+    <input type="text" disabled name="post[status]" value="unpublished"/>
+
   </div>
  <div class="actions">
     <%= form.submit :class=>"btn btn-primary w-100" %>

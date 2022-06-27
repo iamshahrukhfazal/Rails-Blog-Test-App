@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateSuggestions < ActiveRecord::Migration[5.2]
   def change
     create_table :suggestions do |t|
@@ -9,6 +11,5 @@ class CreateSuggestions < ActiveRecord::Migration[5.2]
       t.timestamps
     end
     add_index :suggestions, [:id], unique: true
-
   end
 end

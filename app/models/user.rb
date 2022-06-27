@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -8,13 +10,12 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :reports, dependent: :destroy
-  has_many :suggestions,dependent: :destroy
+  has_many :suggestions, dependent: :destroy
   # has_one_attached :image
-  enum role: ["user","moderator", "admin"]
-  after_initialize :set_default_role, :if => :new_record?
+  enum role: %w[user moderator admin]
+  after_initialize :set_default_role, if: :new_record?
 
-  def set_default_role 
+  def set_default_role
     self.role ||= :user
   end
-
 end

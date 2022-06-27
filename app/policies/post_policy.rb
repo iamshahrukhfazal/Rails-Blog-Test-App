@@ -1,21 +1,16 @@
-class PostPolicy < ApplicationPolicy
-   
-    def index? 
-      # byebug
-      # ["moderator"].include?(@user.role)
-      true
-    end
+# frozen_string_literal: true
 
-    def show? 
-      # ["moderator"].include?(@user.role)
-      true
-    end
-  
+class PostPolicy < ApplicationPolicy
+  def index?
+    # byebug
+    # ["moderator"].include?(@user.role)
+    true
+  end
+
+  def show?
+    # ["moderator"].include?(@user.role)
+    true
+  end
 end
-                                                                                                                                                                                                                                                                                        
-                                                                                                                                                    
-    
-   
-   
-   
+
 5

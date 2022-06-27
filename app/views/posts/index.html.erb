@@ -1,13 +1,18 @@
 
 <!-- Button trigger modal -->
-
-<%if current_user.role==="user"%>
-    <button type="button" class="btn btn-primary flex justify-center" data-toggle="modal" data-target="#exampleModalCenter">
+<div class="alert alert-primary d-flex justify-content-center" id="post-message" role="alert">
+    
+</div>
+<div class="d-flex justify-content-end">
+       <%if current_user.role === "user"%>
+             <button type="button" class="btn btn-primary flex justify-center" data-toggle="modal" data-target="#exampleModalCenter">
             Create New Post
           </button>
-
-          <%= link_to "All My Suggestion",suggestion_path(current_user.id) %>
-
+        <%end%>
+          
+</div>
+<%if current_user.role==="user"%>
+         
 
           <!-- Modal -->
           <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -32,9 +37,9 @@
 
  <div id="post_containor">
     <%if current_user.role === "moderator"%>
-        <%= render @posts.where(status: "unpublished")%> 
+        <%= render @posts.where(status: "unpublished").order(updated_at: :desc)%> 
     <%else%>
-        <%= render @posts%> 
+        <%= render @posts.where(status: "published").order(updated_at: :desc)%> 
     <%end%>
  </div>
 

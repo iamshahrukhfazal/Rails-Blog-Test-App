@@ -1,25 +1,27 @@
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
+<div class="col-lg-8 mx-lg-auto px-2">
+  <div class="card shadow">
+    <div class="card-header">
+      <h2 class="card-title text-center"></h2>
+    </div class="p-2">
+        <p>
+          <strong>Content:</strong>
+          <%= @post.content %>
+        </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @post.status %>
-</p>
-<p>
-  <strong>Links:</strong>
-  <%= @post.links %>
-</p>
+        <p>
+          <strong>Status:</strong>
+          <%= @post.status %>
+        </p>
+    
 
-<div class="d-flex align-items-center">
-  <button type="button" class="btn btn-primary flex justify-center" data-toggle="modal" data-target="#suggestionModalCenter">
-    Create Suggestion 
-  </button>
+        <div class="d-flex align-items-center">
+        
 
-   <div id="post_suggeston_counts"> <a id="post_suggeston_count" href="<%= post_suggestions_path(@post) %>"><%= @post.suggestions.count%> Suggestion</a></div>
-</div>
-
+          <div id="post_suggeston_counts"> <a id="post_suggeston_count" href="<%= post_suggestions_path(@post) %>"><%= @post.suggestions.count%> Suggestion</a></div>
+        </div>
+    </div>
+  </div>
+  </div>
 
 
 
@@ -42,11 +44,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
 <div class="like-report">
   <div id="show-post-like">
     <%=render partial: "likes/likeBtn", locals:{likeable:@post}%>
