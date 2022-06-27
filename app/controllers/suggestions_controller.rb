@@ -6,16 +6,21 @@ class SuggestionsController < ApplicationController
   end
 
   def show
+    # only for current_user
+    authorize Suggestion
     @mySuggestion = Suggestion.mySuggestions(current_user.id)
   end
 
   def index
+    authorize Suggestion
+
     @post = Post.find(params[:post_id])
     @suggestions = @post.suggestions
     @isUserPost = @post.user.id === current_user.id
   end
 
   def create
+    authorize Suggestion
     @suggestion = current_user.suggestions.new(suggestion_params)
     respond_to do |format|
       if @suggestion.save
@@ -31,10 +36,9 @@ class SuggestionsController < ApplicationController
   end
 
   def update
+
+    authorize Suggestion
     @suggestion = Suggestion.find(params[:id])
-
-    puts suggestion_params
-
     respond_to do |format|
       if @suggestion.update(suggestion_params)
         format.html { redirect_to post_url(@suggestion), notice: 'Post was successfully updated.' }

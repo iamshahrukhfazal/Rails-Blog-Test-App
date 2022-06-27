@@ -3,14 +3,29 @@
 class PostPolicy < ApplicationPolicy
   def index?
     # byebug
-    # ["moderator"].include?(@user.role)
-    true
+    ["moderator","user","admin"].include?(@user.role)
+    # true
   end
 
   def show?
-    # ["moderator"].include?(@user.role)
-    true
+    ["user","admin"].include?(@user.role)
   end
+  def new?
+    ["user","admin"].include?(@user.role)
+  end
+
+  def create?
+    ["user","admin"].include?(@user.role)
+  end
+
+  def destroy?
+    ["modrator","admin"].include?(@user.role)
+  end
+
+  def update?
+    ["modrator","admin"].include?(@user.role)
+  end
+
 end
 
 

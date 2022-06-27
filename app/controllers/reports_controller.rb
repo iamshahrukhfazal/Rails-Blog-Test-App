@@ -7,7 +7,6 @@ class ReportsController < ApplicationController
     @report = current_user.reports.new(report_params)
 
     authorize Report
-
     respond_to do |format|
       if @report.save
         @post = @report.reportable

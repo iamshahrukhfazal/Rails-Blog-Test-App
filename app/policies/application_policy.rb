@@ -7,6 +7,8 @@ class ApplicationPolicy
     @user = user
     @record = record
     @roles_admin_moderator = ["moderator","admin"]
+    @roles_admin_user = ["moderator","admin"]
+
   end
 
   def index?

@@ -6,14 +6,16 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
+    authorize Post
+
     @posts = Post.all
     @post = Post.new
     @suggestion = Suggestion.new
-    authorize Post
   end
 
   # GET /posts/1 or /posts/1.json
   def show
+    authorize Post
     @post = Post.find(params[:id])
     @report = Report.new
     @suggestion = Suggestion.new
@@ -23,6 +25,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    authorize Post
     @post = Post.new
     @post.user = current_user
   end
@@ -37,7 +40,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        
+
         format.html { redirect_to post_url(@post), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
