@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Documentation for the Class
 class ReportPolicy < ApplicationPolicy
   def index?
     # byebug
@@ -10,8 +11,9 @@ class ReportPolicy < ApplicationPolicy
   def show?
     @roles_admin_moderator.include?(@user.role)
   end
+
   def create?
-    ["user","admin"].include?(@user.role)
+    %w[user admin].include?(@user.role)
   end
 
   def all_reported_comment?

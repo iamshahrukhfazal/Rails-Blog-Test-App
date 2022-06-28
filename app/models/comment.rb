@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Doc for class
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
@@ -11,7 +12,7 @@ class Comment < ApplicationRecord
 
   has_rich_text :content
 
-  def self.lastComments
+  def self.last_comments
     Comment.last(10)
   end
 end

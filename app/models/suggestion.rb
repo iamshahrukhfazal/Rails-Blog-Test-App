@@ -6,6 +6,6 @@ class Suggestion < ApplicationRecord
 
   enum status: { pending: 'Pending', cancel: 'Cancel', approved: 'Approved' }
 
-  scope :mySuggestions, ->(id) { where(user_id: id) }
+  scope :my_suggestions, ->(id) { where(user_id: id) }
   # Ex:- scope :active, -> {where(:active => true)}
 end

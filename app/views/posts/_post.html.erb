@@ -9,7 +9,7 @@
       <%if current_user.role === "moderator"%>
 
         <%= form_with(model: post, local: false) do |form| %>
-          <div class="d-flex ">
+          <div class="d-flex justify-content-end">
               <div class="field">
                 <%= form.label :status %>
                 <%= form.select :status, Post.statuses%>

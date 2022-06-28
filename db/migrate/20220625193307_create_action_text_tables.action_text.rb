@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This migration comes from action_text (originally 201805281641)
+# Service to download ftp files from the server
 class CreateActionTextTables < ActiveRecord::Migration[5.2]
   def change
     create_table :action_text_rich_texts do |t|

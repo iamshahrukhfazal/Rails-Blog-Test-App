@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Service to download ftp files from the server
 class AddConfirmableToDevise < ActiveRecord::Migration[5.2]
   def up
     add_column :users, :confirmation_token, :string

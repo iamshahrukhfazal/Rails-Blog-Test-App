@@ -6,14 +6,9 @@ class LikesController < ApplicationController
     @like = current_user.likes.new(like_params)
     respond_to do |format|
       if @like.save
-        @post = @like
-        @like_class = @post.likeable.class.to_s === 'Comment'
-
-        format.html { redirect_to post_path(params[:post_id]), notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @like }
+        @like_class = @like.likeable.class.to_s.equal? 'Comment'
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @like.errors, status: :unprocessable_entity }
       end
       format.js
     end
@@ -21,15 +16,11 @@ class LikesController < ApplicationController
 
   def destroy
     @report = Report.new
-
     @like = current_user.likes.find(params[:id])
-    @post = @like
-    @like_class = @post.likeable.class.to_s === 'Comment'
+    @like_class = @like.likeable.class.to_s.equal? 'Comment'
     @like.destroy
-
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
       format.js
     end
   end

@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 class SuggestionsController < ApplicationController
-  def index
-    @suggestion = Suggestion.all
-  end
+  # def index
+  #   @suggestion = Suggestion.all
+  # end
+  before_action :authenticate_user!
+  before_action :set_post, only: %i[index]
 
   def show
     # only for current_user
     authorize Suggestion
-    @mySuggestion = Suggestion.mySuggestions(current_user.id)
+    @my_suggestion = Suggestion.my_suggestions(current_user.id)
   end
 
   def index
     authorize Suggestion
-
-    @post = Post.find(params[:post_id])
     @suggestions = @post.suggestions
-    @isUserPost = @post.user.id === current_user.id
+    @is_user_post = @post.user.id.equal? current_user.id
   end
 
   def create
@@ -26,10 +26,8 @@ class SuggestionsController < ApplicationController
       if @suggestion.save
         @post = @suggestion.post
         format.html { redirect_to post_path(params[:post_id]), notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @suggestion }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @suggestion.errors, status: :unprocessable_entity }
       end
       format.js
     end
@@ -41,10 +39,8 @@ class SuggestionsController < ApplicationController
     respond_to do |format|
       if @suggestion.update(suggestion_params)
         format.html { redirect_to post_url(@suggestion), notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @suggestion }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @suggestion.errors, status: :unprocessable_entity }
       end
       format.js
     end
@@ -63,6 +59,10 @@ class SuggestionsController < ApplicationController
 
   private
 
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
+
   def suggestion_params
     if params[:post_id].nil?
       params.require(:suggestion).permit(:status, :content, :id, :message)
@@ -71,6 +71,4 @@ class SuggestionsController < ApplicationController
             .merge(post_id: params[:post_id])
     end
   end
-
-  def isValidUser; end
 end

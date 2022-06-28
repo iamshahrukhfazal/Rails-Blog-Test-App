@@ -11,7 +11,7 @@
    <div class="suggestion-content">
     <%= suggestion.content%> 
    </div>
-    <% if @isUserPost%>
+    <% if @is_user_post%>
         <div class="update_post_suggestion_status_<%= suggestion.id%>">
              <%= form_tag( suggestion_path(suggestion) , remote: true) do |form| %>
                 <div class="d-flex">

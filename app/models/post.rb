@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Doc for the class
 class Post < ApplicationRecord
   enum status: { published: 'published', draft: 'draft', unpublished: 'unpublished' }
 
@@ -9,11 +10,9 @@ class Post < ApplicationRecord
   has_many :reports, as: :reportable, dependent: :destroy
   has_many :suggestions, dependent: :destroy
 
-
   has_rich_text :content
 
-  
-  def self.lastPosts
+  def self.last_posts
     Post.last(10)
   end
 end

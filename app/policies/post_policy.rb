@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Documentation for the Class
 class PostPolicy < ApplicationPolicy
   def index?
     # byebug
@@ -8,7 +9,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def show?
-    %w[user admin].include?(@user.role)
+    %w[user moderator admin].include?(@user.role)
   end
 
   def new?

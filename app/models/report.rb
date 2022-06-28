@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Documentation for the Class
 class Report < ApplicationRecord
   enum report_status: { Abusive: 'Abusive', Under18: 'Under18' }
 
@@ -8,7 +9,7 @@ class Report < ApplicationRecord
   belongs_to :reportable, polymorphic: true
 
   # validation
-  validates :user_id, uniqueness: { scope: %i[reportable_id reportable_type] }
+  # validates :user_id, uniqueness: { scope: %i[reportable_id reportable_type] }
   validates :report_status, presence: true
 
   # scope

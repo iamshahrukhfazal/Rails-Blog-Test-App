@@ -20,15 +20,10 @@
         <div>
             <p class="reply mb-0">Reply</p>
             <div class="reply-box justify-content-center">
-                <%
-=begin%>
- <textarea name="comment[content]" id="" row="4" cols="80"></textarea> 
-<%
-=end%>
-                    <input  type="hidden" >
-                
-                <div>
-                    <%= f.rich_text_area :content, :class=>"form-control d-block", :id=>"exampleFormControlTextarea1", :rows=>"3"%>
+
+               <div class="field">
+                    <%= f.label :content %>
+                    <%= f.rich_text_area :content, :class=>"form-control",input: post.id+rand(1..40000), id: `trix_first_description#{post.id}`, :rows=>"3", :value=>"test"%>
                 </div>
 
                 <input type="submit" value="Submit" class="btn btn-primary">
