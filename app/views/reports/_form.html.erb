@@ -5,14 +5,13 @@
             <%= form_with(model:@report, local: false) do |form| %>
            <div class="d-flex mt-2 mb-2">    
 
-                <div class="field">
-             
+                <div class="field mr-2">
                     <%= form.select :report_status, Report.report_statuses%> 
                 </div>
                 <input type="hidden" name="report[reportable_id]" value=" <%=reportable.id %>">
                 <input type="hidden" name="report[reportable_type]" value="<%=reportable.class.to_s%>">
                 <div class="actions d-inline">
-                    <input type="submit" value="Report Post">
+                    <input type="submit" class="btn btn-primary p-1" value="Report <%=reportable.class.to_s%>">
                 </div>
                 </div>
             <%end%>

@@ -4,7 +4,7 @@
 <%= suggestion.updated_at.strftime('%m/%d/%Y')%> 
 
 <div class="suggestion-heder">
-  <%= suggestion.user.email%>  <div class="status-containor" id="suggestion_status_<%= suggestion.id%>"> Status :  <%= suggestion.status%></div>
+ Suggestion By: <%= suggestion.user.email%>  <div class="status-containor" id="suggestion_status_<%= suggestion.id%>"> Status :  <%= suggestion.status%></div>
 
 </div>   
    <br/>
@@ -39,10 +39,10 @@
                             <%= form_tag( suggestion_path(suggestion) , remote: true) do |form| %>
                                 <div class="d-flex">
                                     <div class="field">
-                                        <input type="text" name="suggestion[message]" value=""/>
+                                        <textarea type="text" name="suggestion[message]" value="" row="4" col="4"></textarea>
                                     </div>
                                     <input type="hidden" name="_method" value="PATCH">
-                                    <div class="actions d-inline ml-4">
+                                    <div class="actions ml-4">
                                         <input type="submit" value="Reply to Suggestion">
                                     </div>
                                 </div>
