@@ -22,11 +22,15 @@
             <div class="reply-box">
 
                 <div class="">
-                    <%= f.label :content %>
+                    <%
+=begin%>
+ <%= f.label :content %> 
+<%
+=end%>
                     <%= f.rich_text_area :content, :class=>"form-control",input: post.id+rand(1..40000), id: `trix_first_description#{post.id}`, :rows=>"3", :value=>"test"%>
                 </div>
 
-                <input type="submit" value="Submit" class="btn btn-primary d-block">
+                <input type="submit" value="Submit" class="btn btn-primary d-block w-100 mt-3">
 
             </div>
 
@@ -39,7 +43,7 @@
 document.querySelectorAll(".reply").forEach(element => {
     element.addEventListener("click",(e)=>{
         e.preventDefault();
-        element.nextElementSibling.style= "display:flex;"
+        element.nextElementSibling.style= "display:block;"
     })
 });
 </script>

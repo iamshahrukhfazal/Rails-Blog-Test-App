@@ -32,11 +32,13 @@
           <button type="button" class="btn btn-primary flex justify-center" data-toggle="modal" data-target="#suggestionModalCenter">
               Create Suggestion 
           </button>
-          <%else%>
-          <%end%>
-          <div id="post_suggeston_counts"> (<a id="post_suggeston_count" href="<%= post_suggestions_path(@post) %>"><%= @post.suggestions.count%> Post Suggestion</a>)</div>
-      </div>
-      </div>
+      <%else%>
+      <%end%>
+      <div id="post_suggeston_counts"> (<a id="post_suggeston_count" href="<%= post_suggestions_path(@post) %>"><%= @post.suggestions.count%> Post Suggestion</a>)</div>
+    </div>
+  </div>
+
+  
 </div>
 
 
@@ -63,21 +65,22 @@
 </div>
 
 <%if current_user.role==="user"%>
-<div class="like-report mt-2">
-  <div id="show-post-like">
-    <%=render partial: "likes/likeBtn", locals:{likeable:@post}%>
-  </div>
-  
-
-  <div id="report_<%= @post.id%>">
-      <%=  render partial:"reports/form", locals:{ reportable:@post }%>
-  </div>
-
-  </div>
+    <div class="like-report mt-2">
+        <div id="show-post-like d-inline w-15">
+          <%=render partial: "likes/likeBtn", locals:{likeable:@post}%>
+        </div>
+      
+        <div id="report_<%= @post.id%>" >
+            <%=  render partial:"reports/form", locals:{ reportable:@post }%>
+        </div>
+      </div>
   <%else%>
-
   <%end%>
-<%if current_user.role==="user"%>
+  <hr/>
+
+<div>
+
+  <%if current_user.role==="user"%>
   <div>
     <strong>
     Post Comments
@@ -97,4 +100,5 @@
 
 
 <%end%>
+</div>
 
