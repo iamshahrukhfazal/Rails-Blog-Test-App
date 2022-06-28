@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
+
+  def new
+    @comment = Comment.new
+  end
   def create
     @report = Report.new
-    byebug
-
-    @comment = current_user.comments.new(comment_params)
-    byebug
+    @comment = Comment.new(comment_params)
+    @comment.user = current_user
+    # byebug
     respond_to do |format|
       if @comment.save
         @post = @comment.post
@@ -34,8 +37,9 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comments).permit(:content, :parent_id)
-          .merge(post_id: params[:post_id])
-    byebug
+
+    params.require(:comment).permit(:content, :parent_id).merge(post_id: params[:post_id])
+
+
   end
 end

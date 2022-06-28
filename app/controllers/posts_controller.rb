@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @report = Report.new
     @suggestion = Suggestion.new
-
+    @comment = Comment.new
     authorize Post
   end
 
@@ -37,6 +37,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+
+    byebug
+
 
     respond_to do |format|
       if @post.save
