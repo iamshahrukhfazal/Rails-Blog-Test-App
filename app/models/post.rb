@@ -10,6 +10,8 @@ class Post < ApplicationRecord
   has_many :reports, as: :reportable, dependent: :destroy
   has_many :suggestions, dependent: :destroy
 
+  validates :content, presence: true
+
   has_rich_text :content
 
   def self.last_posts

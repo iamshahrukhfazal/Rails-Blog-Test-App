@@ -14,6 +14,10 @@
           <li class="nav-item">
             <%= link_to "All My Suggestion",suggestion_path(current_user.id),class:"nav-link" %>
           </li>
+
+          <li class="nav-item"><a class="nav-link" href="/userprofile">User Profile</a></li>
+    
+
         <%end%>
 
       <%end%>
@@ -47,10 +51,12 @@
 
       <%end%>
 
-        <%if current_user%>
 
-        <%if current_user.role === "user"%>
-        <%end%>
+        <%if current_user%>
+       
+
+          <%if current_user.role === "user"%>
+          <%end%>
 
       <%end%>
 
@@ -59,5 +65,20 @@
 
 
     </ul>
+
+     
   </div>
+  <%if current_user%>
+   <div class="d-flex justify-content-end ml-10">
+        <li class="p-2 mr-2 px-4 nav-tags"><%=current_user.role%></li>
+      <li class="p-2 px-4 nav-tags"><%=current_user.email%></li>
+    </div>
+
+    <%if current_user.role === "user"%>
+
+    
+    <%end%>
+
+<%end%>
 </nav>
+

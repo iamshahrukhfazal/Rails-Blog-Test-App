@@ -9,5 +9,6 @@ class Like < ApplicationRecord
   def self.last_likes
     Like.last(10)
   end
+
   # Ex:- scope :active, -> {where(:active => true)}
 end

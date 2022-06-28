@@ -29,6 +29,7 @@ class SuggestionsController < ApplicationController
       else
         format.html { render :new, status: :unprocessable_entity }
       end
+
       format.js
     end
   end

@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     authorize Post
-
+    # @page_post = Post.paginate(page: params[:page], per_page: 3)
     @posts = Post.all
     @post = Post.new
     @suggestion = Suggestion.new
@@ -43,7 +43,9 @@ class PostsController < ApplicationController
         format.html { redirect_to post_url(@post), notice: 'Post was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
+
       end
+
       format.js
     end
   end

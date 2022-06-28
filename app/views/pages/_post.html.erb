@@ -1,16 +1,28 @@
 
 <div id="c_post_<%= post.id%>" class="comment-card">
-      <%= post.user.email%>
-    
-     <%
-=begin%>
- :: <%= post.content%> 
-<%
-=end%>
-    <a href="<%=post_path(post)%>">View Post</a>
-     Like (<%= post.likes.count%>)
-     Comments (<%= post.comments.count%>)
+     
+     <div class="d-flex justify-content-between">
+        <div class="tags-custome">
+                Posted By :  <%= post.user.email%>
+        </div>
+      
 
+       <div class="d-flex ">
+            <div>
+                    Posted At :  
+            </div>
+            <%= time_ago_in_words(post.updated_at).capitalize()%>
+        </div>
+        
+     </div>
     
-    <%= post.updated_at%>
+    
+    <div>
+        Like (<%= post.likes.count%>)
+        Comments (<%= post.comments.count%>) 
+    </div>   
+   
+    <div class="d-flex">
+       <div class="mr-2 btn btn-primary w-100 mt-2" > <a style="color:white" href="<%=post_path(post)%>">View Post</a></div>
+    </div>
 </div>

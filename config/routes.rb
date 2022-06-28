@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get '/reportedpost', to: 'reports#all_reported_post'
   get '/reportedcomment', to: 'reports#all_reported_comment'
+  get '/userprofile', to: 'pages#user_profile'
 
   root to: 'pages#home'
 

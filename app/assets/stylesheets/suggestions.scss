@@ -36,6 +36,11 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border: 1px solid gray;
     padding: .5rem;
+    background-color: rgb(218, 83, 83);
+    padding: .5rem;
+    border-radius: 4px;
+    display: inline-block;
+    color: white;
 }
 select{
     height: 2rem;
@@ -53,4 +58,19 @@ a{
 a:hover{
     color: gary;
     background-color: none;
+}
+.tags-custome{
+    background-color: rgb(113, 165, 208);
+    padding: .5rem;
+    border-radius: 4px;
+    display: inline-block;
+    color: white;
+}
+
+.nav-tags{
+    background-color: rgb(113, 165, 208);
+    padding: .5rem;
+    border-radius: 4px;
+    display: inline-block;
+    color: white;
 }

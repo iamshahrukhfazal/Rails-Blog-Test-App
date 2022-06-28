@@ -8,4 +8,10 @@ class PagesController < ApplicationController
     @posts = Post.last_posts
     @likes = Like.last_likes
   end
+
+  def user_profile
+    @likes = current_user.likes.count
+    @comments = current_user.comments.count
+    @posts = current_user.posts.count
+  end
 end
