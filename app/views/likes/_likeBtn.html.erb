@@ -9,19 +9,24 @@
             <%= form_tag( "/likes" , remote: true) do |f| %>
                 <input type="hidden" name="like[likeable_id]" value="<%= likeable.id%>">
                 <input type="hidden" name="like[likeable_type]" value="<%= likeable.class.to_s%>">
-                <div class="d-flex">
-                    <div id="post_comment_<%=likeable.id%>" class="mr-2">
-                        <%= likeable.likes.count%> 
+                <div class="d-flex like-cnt">
+                    <div id="post_comment_<%=likeable.id%>" class="mr-2 like-cnt-div">
+                        <% likes=likeable.likes.count%>
+                        <%if likes>0%>
+                              <%=likes%>      
+                        <%else%>
+                            
+                        <%end%>
                     </div>
-                    <input type="submit" value="like Me" class="btn btn-primary">
+                    <input type="submit" value="like Me " class="btn btn-primary">
                 </div>
             <% end %>
             <%else%>
                 <%= form_tag(like_path(like) , remote: true) do |f| %>
 
                 <input type="hidden" name="_method" value="DELETE">
-                <div class="d-flex">
-                    <div id="post_comment_<%=likeable.id%>" class="mr-2">
+                <div class="like-cnt" >
+                    <div id="post_comment_<%=likeable.id%>" class="mr-2 like-cnt-div">
                         <%= likeable.likes.count%> 
                     </div>
                     <input type="submit" value="Unlike" class="btn btn-danger">

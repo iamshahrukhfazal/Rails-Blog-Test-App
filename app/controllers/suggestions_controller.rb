@@ -16,7 +16,7 @@ class SuggestionsController < ApplicationController
   def index
     authorize Suggestion
     @suggestions = @post.suggestions
-    @is_user_post = @post.user.id.equal? current_user.id
+    @is_user_post = (@post.user.id).eql? current_user.id
   end
 
   def create

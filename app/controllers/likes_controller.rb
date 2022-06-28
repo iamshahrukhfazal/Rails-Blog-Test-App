@@ -3,10 +3,10 @@
 class LikesController < ApplicationController
   def create
     @report = Report.new
-    @like = current_user.likes.new(like_params)
+    @post = current_user.likes.new(like_params)
     respond_to do |format|
-      if @like.save
-        @like_class = @like.likeable.class.to_s.equal? 'Comment'
+      if @post.save
+        @like_class = (@post.likeable.class.to_s).eql? 'Comment'
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -16,9 +16,9 @@ class LikesController < ApplicationController
 
   def destroy
     @report = Report.new
-    @like = current_user.likes.find(params[:id])
-    @like_class = @like.likeable.class.to_s.equal? 'Comment'
-    @like.destroy
+    @post = current_user.likes.find(params[:id])
+    @like_class = (@post.likeable.class.to_s).eql? 'Comment'
+    @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.js
