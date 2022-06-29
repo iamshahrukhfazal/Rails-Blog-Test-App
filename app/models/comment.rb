@@ -14,6 +14,6 @@ class Comment < ApplicationRecord
   has_rich_text :content
 
   def self.last_comments
-    Comment.last(10)
+    Comment.last(10).sort_by(&:updated_at).reverse
   end
 end

@@ -12,13 +12,10 @@ Rails.application.routes.draw do
     resources :suggestions
   end
 
-  
-
   get '/reportedpost', to: 'reports#all_reported_post'
   get '/reportedcomment', to: 'reports#all_reported_comment'
   get '/userprofile', to: 'pages#user_profile'
   post '/posts/searchpost', to: 'posts#search'
-
 
   root to: 'pages#home'
 

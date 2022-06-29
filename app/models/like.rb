@@ -7,7 +7,7 @@ class Like < ApplicationRecord
   # validates :user_id, uniqueness: { scope: %i[likeable_id likeable_type] }
 
   def self.last_likes
-    Like.last(10)
+    Like.last(10).sort_by(&:updated_at).reverse
   end
 
   # Ex:- scope :active, -> {where(:active => true)}

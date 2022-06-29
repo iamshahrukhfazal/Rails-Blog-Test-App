@@ -6,18 +6,17 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-
-  config.action_mailer.default_url_options = { host: 'http://blog-devsinc.herokuapp.com/', protocol:"https" }
+  config.action_mailer.default_url_options = { host: 'http://blog-devsinc.herokuapp.com/', protocol: 'https' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
-# SMTP settings for gmail
+  # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-    address:               "smtp.gmail.com",
-    port:                  587,
-    user_name:             Rails.application.credentials.dig(:gmail_smtp, :email),
-    password:              Rails.application.credentials.dig(:gmail_smtp, :password),
-    authentication:        "plain",
-    enable_starttls_aut:  true
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: Rails.application.credentials.dig(:gmail_smtp, :email),
+    password: Rails.application.credentials.dig(:gmail_smtp, :password),
+    authentication: 'plain',
+    enable_starttls_aut: true
   }
 
   # Eager load code on boot. This eager loads most of Rails and

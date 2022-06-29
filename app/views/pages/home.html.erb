@@ -1,20 +1,20 @@
 
 <div class="home">
 
-    <div>
-        MOST RECIENT POST
+    <div class="tags-homes">
+        MOST RECENT POST
     </div>
     <%= render partial: "pages/post", collection: @posts %>
     <hr/>
 
-    <div>
-        MOST RECIENT COMMENT
+    <div class="tags-homes">
+        MOST RECENT COMMENT
     </div>
     <%= render partial: "pages/comment", collection: @comments %>
 
     <hr/>
-    <div class="">
-        MOST RECIENT LIKES
+    <div class="tags-homes">
+        MOST RECENT LIKES
     </div>
     <%= render partial: "pages/like", collection: @comments %>
 <div>

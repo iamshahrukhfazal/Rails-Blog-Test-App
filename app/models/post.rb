@@ -13,14 +13,13 @@ class Post < ApplicationRecord
   validates :content, presence: true
   validates :title, presence: true
 
-
   has_rich_text :content
 
   def self.last_posts
-    Post.last(10)
+    Post.last(10).sort_by(&:updated_at).reverse
   end
 
-  scope :find_by_field_substring, ->(query) do
-    where("title ILIKE ?", "%#{query}%") 
-  end
+  scope :search_by_field_substring, lambda { |query|
+    where('title ILIKE ?', "%#{query}%")
+  }
 end

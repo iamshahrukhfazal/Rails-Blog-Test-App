@@ -76,16 +76,15 @@ class PostsController < ApplicationController
     end
   end
 
-
   def search
     # byebug
-    if(post_params[:title].length>0)
-      @posts = Post.find_by_field_substring(post_params[:title])
-    else
-      @posts= Post.all
-    end
-    
+    @posts = if post_params[:title].length.positive?
+               Post.search_by_field_substring(post_params[:title])
+             else
+               Post.all
+             end
   end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -95,6 +94,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:content, :links, :status,:title)
+    params.require(:post).permit(:content, :links, :status, :title)
   end
 end
