@@ -95,7 +95,7 @@ Devise.setup do |config|
   # Does not affect registerable.
   # config.paranoid = true
 
-  config.reconfirmable = true
+  # config.reconfirmable = true
 
   # By default Devise will store the user in session. You can skip storage for
   # particular strategies by setting this option.
