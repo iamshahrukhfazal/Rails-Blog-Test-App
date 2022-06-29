@@ -11,10 +11,16 @@ class Post < ApplicationRecord
   has_many :suggestions, dependent: :destroy
 
   validates :content, presence: true
+  validates :title, presence: true
+
 
   has_rich_text :content
 
   def self.last_posts
     Post.last(10)
+  end
+
+  scope :find_by_field_substring, ->(query) do
+    where("title ILIKE ?", "%#{query}%") 
   end
 end

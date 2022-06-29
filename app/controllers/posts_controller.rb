@@ -3,6 +3,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[edit update destroy]
+  skip_before_action :verify_authenticity_token, only: %i[search]
 
   # GET /posts or /posts.json
   def index
@@ -75,6 +76,16 @@ class PostsController < ApplicationController
     end
   end
 
+
+  def search
+    # byebug
+    if(post_params[:title].length>0)
+      @posts = Post.find_by_field_substring(post_params[:title])
+    else
+      @posts= Post.all
+    end
+    
+  end
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -84,6 +95,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:content, :links, :status)
+    params.require(:post).permit(:content, :links, :status,:title)
   end
 end
