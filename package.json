@@ -6,6 +6,6 @@
     "actiontext": "https://github.com/kobaltz/actiontext"
   },
   "devDependencies": {
-    "webpack-dev-server": "5.4.3"
+    "webpack-dev-server": "^4.9.2"
   }
 }
