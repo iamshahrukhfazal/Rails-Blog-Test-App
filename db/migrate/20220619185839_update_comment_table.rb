@@ -10,7 +10,7 @@ class UpdateCommentTable < ActiveRecord::Migration[5.2]
 
     remove_index :likes, %i[user_id likeable_id]
 
-    add_index :likes, %i[user_id likeable_id likeable_type], unique: ture
+    add_index :likes, %i[user_id likeable_id likeable_type], unique: true
     add_index :likes, %i[likeable_id likeable_type]
     # Ex:- add_index("admin_users", "username")
   end
