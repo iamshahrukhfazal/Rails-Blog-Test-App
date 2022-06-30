@@ -3,9 +3,7 @@
 # Documentation for the Class
 class ReportPolicy < ApplicationPolicy
   def index?
-    # byebug
     @roles_admin_moderator.include?(@user.role)
-    # true
   end
 
   def show?

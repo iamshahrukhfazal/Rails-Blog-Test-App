@@ -1,4 +1,3 @@
-
 <div class="col-lg-8 mx-lg-auto px-2">
   <div class="card shadow">
     <div class="card-header">
@@ -17,15 +16,22 @@
 </div>
 
 <div class="p-2">
-  <p>
+
+    <p class="post_title">
+    
+      <%= @post.title %>
+    </p>
+
+    <div class="tags-post ">
+      <strong>Status:</strong>
+      <div class="ml-2 tags-post-cont"> <%= @post.status %></div>
+    </div>
+    <p>
     <strong>Content:</strong>
       <%= @post.content %>
     </p>
 
-    <p>
-    <strong>Status:</strong>
-      <%= @post.status %>
-    </p>
+  
     <div class="d-flex align-items-center">
         
       <%if current_user.role ==="user"%>

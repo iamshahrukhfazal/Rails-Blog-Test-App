@@ -31,9 +31,9 @@ gem 'devise'
 gem 'webpacker', '~> 4.x'
 
 gem 'actiontext', github: 'kobaltz/actiontext', branch: 'archive', require: 'action_text'
-gem 'image_processing'
 gem 'activestorage-cloudinary-service'
 gem 'cloudinary', require: true
+gem 'image_processing'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

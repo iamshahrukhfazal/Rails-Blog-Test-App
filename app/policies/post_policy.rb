@@ -3,9 +3,7 @@
 # Documentation for the Class
 class PostPolicy < ApplicationPolicy
   def index?
-    # byebug
     %w[moderator user admin].include?(@user.role)
-    # true
   end
 
   def show?

@@ -31,16 +31,12 @@ body {
     color: #4d4dff;
     text-decoration: none;
     transition: .25s ease;
-    // &:hover {
-    //   border-color: #ff4d4d;
-    //   color: #ff4d4d;
-    // }
   }
   
   // Blog header
   //-------------------------
   .blog-cover {
-    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/yosemite-3.jpg");
+    background: url("https://thumbs.dreamstime.com/b/person-gray-photo-placeholder-man-costume-background-146157490.jpg");
     background-size: cover;
     border-radius: 5px 5px 0 0;
     height: 15rem;
@@ -52,9 +48,10 @@ body {
     padding-top: .125rem;
     width: 80%;
   }
+  
   .blog-author h3::before,
   .blog-author--no-cover h3::before {
-    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg");
+    background: url("https://thumbs.dreamstime.com/b/person-gray-photo-placeholder-man-costume-background-146157490.jpg");
     background-size: cover;
     border-radius: 50%;
     content: " ";
@@ -193,6 +190,28 @@ body {
     width: 40%;
   
   }
+
+  .post_title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 600;
+    display: flex;
+  }
   
+.tags-post{
+  display: flex;
+  margin-bottom: .5rem;
+} 
+  .tags-post-cont{
+    padding: .2rem;
+    background: #112bf4ca;
+    color: white;
+    border-radius: 20px;
+    font-size: 12px;
+    width: 100px;
+    text-align: center;
+  }
   /* When the input field gets focus, change its width to 100% */
   

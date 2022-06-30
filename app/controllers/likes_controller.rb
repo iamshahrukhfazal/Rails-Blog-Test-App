@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_post, only:%i[destroy]
+
   def create
     @report = Report.new
     @post = current_user.likes.new(like_params)
@@ -16,7 +19,6 @@ class LikesController < ApplicationController
 
   def destroy
     @report = Report.new
-    @post = current_user.likes.find(params[:id])
     @like_class = (@post.likeable.class.to_s).eql? 'Comment'
     @post.destroy
     respond_to do |format|
@@ -26,6 +28,10 @@ class LikesController < ApplicationController
   end
 
   private
+
+  def set_post
+    @post = current_user.likes.find(params[:id])
+  end
 
   def like_params
     params.require(:like).permit(:likeable_id, :likeable_type)

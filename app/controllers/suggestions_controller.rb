@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 class SuggestionsController < ApplicationController
-  # def index
-  #   @suggestion = Suggestion.all
-  # end
   before_action :authenticate_user!
   before_action :set_post, only: %i[index]
+  before_action :set_all_suggestion, only:%i[udpate]
+  before_action :set_suggestion, only:%i[destroy]
+
 
   def show
-    # only for current_user
     authorize Suggestion
     @my_suggestion = Suggestion.my_suggestions(current_user.id)
   end
@@ -29,7 +28,6 @@ class SuggestionsController < ApplicationController
       else
         format.html { render :new, status: :unprocessable_entity }
       end
-
       format.js
     end
   end
@@ -59,6 +57,15 @@ class SuggestionsController < ApplicationController
   end
 
   private
+  def set_all_suggestion
+    @suggestion = Suggestion.find(params[:id])
+
+  end
+  def set_suggestion
+    @suggestion = current_user.suggestions.find(params[:id])
+
+  end
+
 
   def set_post
     @post = Post.find(params[:post_id])

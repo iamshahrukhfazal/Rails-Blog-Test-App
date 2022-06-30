@@ -2,10 +2,11 @@
 
 class ReportsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_report, only:%i[destroy]
+
 
   def create
     @report = current_user.reports.new(report_params)
-
     authorize Report
     respond_to do |format|
       if @report.save
@@ -20,7 +21,6 @@ class ReportsController < ApplicationController
 
   def destroy
     authorize Report
-    @report = current_user.reports.find(params[:id])
     @post = @report.reportable
     @report.destroy
 
@@ -42,6 +42,9 @@ class ReportsController < ApplicationController
   end
 
   private
+  def set_report
+    @report = current_user.reports.find(params[:id])
+  end
 
   def report_params
     params.require(:report).permit(:reportable_id, :reportable_type, :report_status)

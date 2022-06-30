@@ -21,7 +21,9 @@
         <%end%>
 
       <%end%>
-    
+         <%if current_user && current_user.role==="admin"%>
+            <a class="nav-link" href="/admin">Admin Dashboard</a>
+         <%end%>
       <%if current_user && current_user.role==="moderator"%>
           <li class="nav-item">
             <a class="nav-link" href="/reportedpost">Reported Post</a>
@@ -59,26 +61,15 @@
           <%end%>
 
       <%end%>
-
-      
-
-
-
     </ul>
-
-     
   </div>
   <%if current_user%>
    <div class="d-flex justify-content-end ml-10">
         <li class="p-2 mr-2 px-4 nav-tags"><%=current_user.role%></li>
       <li class="p-2 px-4 nav-tags"><%=current_user.email%></li>
     </div>
-
-    <%if current_user.role === "user"%>
-
-    
+    <%if current_user.role === "user"%>    
     <%end%>
-
 <%end%>
 </nav>
 

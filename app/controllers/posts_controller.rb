@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[edit update destroy]
+  before_action :set_post, only: %i[show edit update destroy]
   skip_before_action :verify_authenticity_token, only: %i[search]
 
   # GET /posts or /posts.json
@@ -17,7 +17,6 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     authorize Post
-    @post = Post.find(params[:id])
     @report = Report.new
     @suggestion = Suggestion.new
     @comment = Comment.new
@@ -68,7 +67,6 @@ class PostsController < ApplicationController
   # DELETE /posts/1 or /posts/1.json
   def destroy
     @post.destroy
-
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
@@ -77,7 +75,6 @@ class PostsController < ApplicationController
   end
 
   def search
-    # byebug
     @posts = if post_params[:title].length.positive?
                Post.search_by_field_substring(post_params[:title])
              else
