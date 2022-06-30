@@ -4,12 +4,6 @@ function test(){
         type: "POST",
         url: "/posts/searchpost",
         data: { post: { title:  $("#searchInput").val()} },
-        success(data) {
-      
-          return false;
-        },
-        error(data) {
-          return false;
-        }
+       
       })
 }
