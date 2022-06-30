@@ -16,7 +16,7 @@ class Post < ApplicationRecord
   has_rich_text :content
 
   def self.last_posts
-    Post.last(10).sort_by(&:updated_at).reverse
+    Post.where(status: "published").last(10).sort_by(&:updated_at).reverse
   end
 
   scope :search_by_field_substring, lambda { |query|
