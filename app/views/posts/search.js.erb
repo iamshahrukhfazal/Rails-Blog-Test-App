@@ -1,0 +1,1 @@
+$("#postSeachByUser").empty().append("<%= j render @posts.where(status: "published").order(updated_at: :desc) %>")

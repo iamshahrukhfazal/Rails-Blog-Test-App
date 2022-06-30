@@ -1,0 +1,23 @@
+<%= form_with( model:[post,Comment.new] , remote: true) do |f| %>
+    <%if !parent.nil?%>
+        <input  type="hidden" name="comment[parent_id]" value="<%= parent.id%>">
+    <%end%>
+
+    <div class="d-flex">
+        
+        <div>
+            <p class="reply mb-0">Reply</p>
+            <div class="reply-box">
+
+                <div class="">
+                    <%= f.rich_text_area :content, :class=>"form-control",input: post.id+rand(1..40000), id: `trix_first_description#{post.id}`, :rows=>"3", :value=>"test"%>
+                </div>
+                <input type="submit" value="Submit" class="btn btn-primary d-block w-100 mt-3">
+
+            </div>
+
+        </div>
+    </div>
+     
+<% end %>
+
