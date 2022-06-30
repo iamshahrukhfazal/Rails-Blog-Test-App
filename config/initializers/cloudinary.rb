@@ -3,4 +3,5 @@ Cloudinary.config do |config|
     config.api_key = '235691447557591'
     config.api_secret = 'D_jVa9dBAjf3FOTm4lW3ip'
     config.secure = true
+    config.cdn_subdomain = true
 end

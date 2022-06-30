@@ -32,3 +32,11 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+cloudinary:
+  service: Cloudinary
+  cloud_name: "devsinc-shahrukh-fazal213213231"
+  api_key: "235691447557591"
+  api_secret: "D_jVa9dBAjf3FOTm4lW3ip-wM94"
+
+
