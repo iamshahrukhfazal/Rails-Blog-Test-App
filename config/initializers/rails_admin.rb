@@ -3,11 +3,11 @@
 RailsAdmin.config do |config|
   ### Popular gems integration
 
-  config.authorize_with do |controller|
+  config.authorize_with do |_controller|
     if current_user.nil?
-      redirect_to main_app.new_account_session_path, flash: {error: 'Please Login to Continue..'}
+      redirect_to main_app.new_account_session_path, flash: { error: 'Please Login to Continue..' }
     elsif !current_user.admin?
-      redirect_to main_app.root_path, flash: {error: 'You are not Admin bro!'}
+      redirect_to main_app.root_path, flash: { error: 'You are not Admin bro!' }
     end
   end
 

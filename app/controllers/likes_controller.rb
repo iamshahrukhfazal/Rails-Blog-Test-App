@@ -2,7 +2,7 @@
 
 class LikesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only:%i[destroy]
+  before_action :set_post, only: %i[destroy]
 
   def create
     @report = Report.new

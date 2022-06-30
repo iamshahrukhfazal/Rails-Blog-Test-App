@@ -3,9 +3,8 @@
 class SuggestionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[index]
-  before_action :set_all_suggestion, only:%i[udpate]
-  before_action :set_suggestion, only:%i[destroy]
-
+  before_action :set_all_suggestion, only: %i[update]
+  before_action :set_suggestion, only: %i[destroy]
 
   def show
     authorize Suggestion
@@ -57,15 +56,14 @@ class SuggestionsController < ApplicationController
   end
 
   private
+
   def set_all_suggestion
     @suggestion = Suggestion.find(params[:id])
-
   end
+
   def set_suggestion
     @suggestion = current_user.suggestions.find(params[:id])
-
   end
-
 
   def set_post
     @post = Post.find(params[:post_id])

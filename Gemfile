@@ -28,6 +28,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
+gem 'pagy', '~> 5.10'
 gem 'webpacker', '~> 4.x'
 
 gem 'actiontext', github: 'kobaltz/actiontext', branch: 'archive', require: 'action_text'

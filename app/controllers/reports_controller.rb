@@ -2,8 +2,7 @@
 
 class ReportsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_report, only:%i[destroy]
-
+  before_action :set_report, only: %i[destroy]
 
   def create
     @report = current_user.reports.new(report_params)
@@ -42,6 +41,7 @@ class ReportsController < ApplicationController
   end
 
   private
+
   def set_report
     @report = current_user.reports.find(params[:id])
   end

@@ -8,8 +8,11 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     authorize Post
-    # @page_post = Post.paginate(page: params[:page], per_page: 3)
-    @posts = Post.all
+    if current_user.role.eql? 'user'
+      @pagy, @posts = pagy(Post.where(status: 'published'), items: 5)
+    else
+      @posts = Post.all
+    end
     @post = Post.new
     @suggestion = Suggestion.new
   end

@@ -11,7 +11,7 @@ class Comment < ApplicationRecord
   has_many :reports, as: :reportable, dependent: :destroy
 
   validates :content, presence: true
-  
+
   has_rich_text :content
 
   def self.last_comments
