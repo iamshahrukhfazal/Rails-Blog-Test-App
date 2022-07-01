@@ -67,9 +67,9 @@ ActiveRecord::Schema.define(version: 2022_06_29_200048) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.text "content"
-    t.string "links"
-    t.bigint "user_id"
+    t.text "content",null: false
+    t.string "links",null: false
+    t.bigint "user_id",null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
@@ -89,13 +89,13 @@ ActiveRecord::Schema.define(version: 2022_06_29_200048) do
   end
 
   create_table "suggestions", force: :cascade do |t|
-    t.string "content"
-    t.string "status"
-    t.bigint "user_id"
-    t.bigint "post_id"
+    t.string "content",null: false
+    t.string "status",null: false
+    t.bigint "user_id",null: false
+    t.bigint "post_id",null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "message"
+    t.string "message",null: false
     t.index ["id"], name: "index_suggestions_on_id", unique: true
     t.index ["post_id"], name: "index_suggestions_on_post_id"
     t.index ["user_id"], name: "index_suggestions_on_user_id"

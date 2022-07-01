@@ -2,7 +2,7 @@
 
      
        <%if current_user.role === "user"%>
-          <input id="searchInput" onkeyup="test()"  class="searchposts mr-1" type="text" name="search" placeholder="Search..">
+          <input id="searchInput" onkeyup="debounce()"  class="searchposts mr-1" type="text" name="search" placeholder="Search..">
 
           <button type="button" class="btn btn-primary flex justify-center w-80" data-toggle="modal" data-target="#exampleModalCenter">
             Create New Post

@@ -8,9 +8,12 @@ class Report < ApplicationRecord
 
   validates :report_status, presence: true
 
-  scope :reported_comment, -> { Report.where(reportable_type: 'Comment') }
-  scope :reported_post, -> { Report.where(reportable_type: 'Post') }
+  scope :reported_comment, -> { where(reportable_type: 'Comment') }
+  scope :reported_post, -> { where(reportable_type: 'Post') }
   scope :reported_status, -> { Report.where.not(report_status: nil) }
+  scope :all_reported_post, ->(id) { where(reportable_id:id)}
+
+
 
   enum report_status: { Abusive: 'Abusive', Under18: 'Under18' }
 
@@ -29,6 +32,7 @@ class Report < ApplicationRecord
       [
         a_track[:reportable_id]
       ]
+    
     end
   end
 end

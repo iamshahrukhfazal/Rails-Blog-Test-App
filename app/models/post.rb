@@ -16,11 +16,13 @@ class Post < ApplicationRecord
 
   has_rich_text :content
 
+  scope :search_by_field_substring, lambda { |query|
+    where('title ILIKE ?', "%#{query}%")
+  }
+
   def self.last_posts
     Post.where(status: 'published').last(10).sort_by(&:updated_at).reverse
   end
 
-  scope :search_by_field_substring, lambda { |query|
-    where('title ILIKE ?', "%#{query}%")
-  }
+ 
 end
