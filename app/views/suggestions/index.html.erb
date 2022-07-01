@@ -1,0 +1,10 @@
+<%if @suggestions.length>0%>
+    <%= link_to "Back to Post",post_path(@suggestions.first.post.id) %>
+        <div class="suggestion_containor">
+            <%= render @suggestions%>
+        </div>
+<%else%>
+        <%= link_to "Back to Post",post_path(params[:post_id]) %>
+        <div>No Suggestion Exist for this post Record Exists</div>
+
+<%end%>

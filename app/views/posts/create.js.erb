@@ -1,0 +1,6 @@
+$("#exampleModalCenter").modal("hide")
+$("#post-message").empty().append("<div>Post Will be Published After Review</div>")
+
+<%if @post.errors.full_messages.length>0%>
+    $("#post-message").empty().append("<div>Post can't be Empty, Thank you!</div>")
+<%end%>
