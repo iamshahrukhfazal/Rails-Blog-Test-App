@@ -29,23 +29,8 @@
 
     <%= render partial:"comments/form", locals:{post:comment.post, parent:comment} %>
     <div class="sub-comments">
-
-<hr/>
-
-      <%=  render comment.comments%>
+    <hr/>
+    <%= render partial: "comments/comment", collection: comment.replies %>
     </div>
   </div>
 </div>
-
-
-
-
-
-<script>
-  document.querySelectorAll(".reply").forEach(element => {
-    element.addEventListener("click",(e)=>{
-        e.preventDefault();
-        element.nextElementSibling.style= "display:block;"
-    })
-});
-</script>

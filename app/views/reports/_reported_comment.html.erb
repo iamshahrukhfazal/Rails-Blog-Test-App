@@ -1,12 +1,8 @@
-
-
-
 <div id="reported_comment_<%= reported_comment.reportable.id%>" class="comment-card">
-
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <%= render partial:"report_modal", locals:{report:reported_comment} %>
+    <div class="modal fade" id="exampleModal<%=reported_comment.reportable.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <% all_reportee = Report.all_reported_post(reported_comment.reportable_id)%>
+            <% all_reportee = Report.user_reported_comments(reported_comment.reportable_id)%>
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Reported By</h5>
@@ -42,11 +38,9 @@
         <div class="">
                 <img src="https://thumbs.dreamstime.com/b/person-gray-photo-placeholder-man-costume-background-146157490.jpg" class="rounded-circle" style="width: 50px;"
                 alt="Avatar" /> | 
-        
-
                 Comment Of :: <%=reported_comment.user.email%>
         </div>
-        <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<%=reported_comment.reportable.id%>">
             Reported By
         </button>
         
@@ -72,5 +66,4 @@
             <input type="submit" value="Delete" class="btn btn-danger w-100">
         <% end %>
     </div>
-
 </div>

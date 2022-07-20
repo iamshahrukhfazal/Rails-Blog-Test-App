@@ -2,8 +2,6 @@
 
 # Documentation for the Class
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :lockable, :confirmable
 
@@ -11,13 +9,13 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :likes, dependent: :destroy
+  # has_many :like_content, class_name: :Like, dependent: :destroy
   has_many :reports, dependent: :destroy
   has_many :suggestions, dependent: :destroy
 
-  enum role: { 'user' => 0, 'moderator' => 1, 'admin' => 2 }
+  enum role: { regular_user: 0, moderator: 1, admin: 2 }
 
   def set_default_role
-    self.role ||= :user
+    self.role = :regular_user unless role.nil?
   end
 end

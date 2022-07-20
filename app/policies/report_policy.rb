@@ -3,22 +3,22 @@
 # Documentation for the Class
 class ReportPolicy < ApplicationPolicy
   def index?
-    @roles_admin_moderator.include?(@user.role)
+    admin? || moderator?
   end
 
   def show?
-    @roles_admin_moderator.include?(@user.role)
+    admin? || moderator?
   end
 
   def create?
-    %w[user admin].include?(@user.role)
+    admin? || regular_user?
   end
 
   def all_reported_comment?
-    @roles_admin_moderator.include?(@user.role)
+    admin? || moderator?
   end
 
   def all_reported_post?
-    @roles_admin_moderator.include?(@user.role)
+    admin? || moderator?
   end
 end

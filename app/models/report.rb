@@ -8,31 +8,13 @@ class Report < ApplicationRecord
 
   validates :report_status, presence: true
 
-  scope :reported_comment, -> { where(reportable_type: 'Comment') }
-  scope :reported_post, -> { where(reportable_type: 'Post') }
-  scope :reported_status, -> { Report.where.not(report_status: nil) }
-  scope :all_reported_post, ->(id) { where(reportable_id:id)}
+  scope :reported_comments, -> { where(reportable_type: CONSTANTS[:COMMENT]) }
+  scope :reported_posts, -> { where(reportable_type: CONSTANTS[:POST]) }
+  scope :un_reported_status, -> { where.not(report_status: nil) }
+  scope :user_reported_posts, ->(id) { reported_posts.where(reportable_id: id) }
+  scope :user_reported_comments, ->(id) { reported_comments.where(reportable_id: id) }
+  scope :remove_post_duplicate, -> { select('DISTINCT ON (reportable_id) *').reported_posts.un_reported_status }
+  scope :remove_comment_duplicate, -> { select('DISTINCT ON (reportable_id) *').reported_comments.un_reported_status }
 
-
-
-  enum report_status: { Abusive: 'Abusive', Under18: 'Under18' }
-
-  def self.remove_comment_dup
-    data = Report.reported_comment.reported_status
-    data.uniq do |a_track|
-      [
-        a_track[:reportable_id]
-      ]
-    end
-  end
-
-  def self.remove_post_dup
-    data = Report.reported_post.reported_status
-    data.uniq do |a_track|
-      [
-        a_track[:reportable_id]
-      ]
-    
-    end
-  end
+  enum report_status: { abusive: 0, under18: 1 }
 end

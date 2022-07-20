@@ -1,19 +1,23 @@
 <%if reported_post.reportable.status==="published"%>
     <div id="reported_post_<%= reported_post.reportable.id%>" class="comment-card">
+    <%= render partial:"report_modal", locals:{report:reported_post} %>
+    <div class="mb-2 d-flex justify-content-between align-items-center">
+        <div class="mb-2">
+            <img src="https://thumbs.dreamstime.com/b/person-gray-photo-placeholder-man-costume-background-146157490.jpg" class="rounded-circle" style="width: 50px;"
+            alt="Avatar" />  
+            Post Of
 
-    <div class="mb-2">
-        <img src="https://thumbs.dreamstime.com/b/person-gray-photo-placeholder-man-costume-background-146157490.jpg" class="rounded-circle" style="width: 50px;"
-        alt="Avatar" />  
-        Comment Of
+            : <%=reported_post.reportable.user.email%> |
 
-        : <%=reported_post.reportable.user.email%> |
-
-        <div class="d-inline" id="status-post-chage">
-            <%=reported_post.reportable.status%>
+            <div class="d-inline" id="status-post-chage">
+                <%=reported_post.reportable.status%>
+            </div>
         </div>
-
-        
+        <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<%=reported_post.reportable.id%>">
+            Reported By
+        </button>
     </div>
+    
     <div class="reported-message-content mb-2">
         <%=reported_post.reportable.content%>
     </div>
@@ -41,12 +45,10 @@
             <input type="hidden"  name="post[status]" value="unpublished">
             <input type="hidden" name="_method" value="PATCH">
             <input type="hidden" name="post[reportable_id]" value="<%=reported_post.id%>">
-
-            <input type="submit" value="Update" class="btn btn-primary w-100">
+            <input type="submit" value="Unpublished Post" class="btn btn-primary w-100">
         <% end %>
     </div>
 
     </div>
-<%else%>
-
+    <%else%>
 <%end%>

@@ -3,10 +3,10 @@
 # Documentation for the Class
 class CommentPolicy < ApplicationPolicy
   def create?
-    %w[user admin].include?(@user.role)
+    admin? || regular_user?
   end
 
   def destroy?
-    %w[modrator admin].include?(@user.role)
+    admin? || moderator?
   end
 end

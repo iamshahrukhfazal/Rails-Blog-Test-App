@@ -3,26 +3,26 @@
 # Documentation for the Class
 class PostPolicy < ApplicationPolicy
   def index?
-    %w[moderator user admin].include?(@user.role)
+    admin? || regular_user? || moderator?
   end
 
   def show?
-    %w[user moderator admin].include?(@user.role)
+    admin? || regular_user? || moderator?
   end
 
   def new?
-    %w[user admin].include?(@user.role)
+    admin? || regular_user?
   end
 
   def create?
-    %w[user admin].include?(@user.role)
+    admin? || regular_user?
   end
 
   def destroy?
-    %w[modrator admin].include?(@user.role)
+    admin? || moderator?
   end
 
   def update?
-    %w[modrator admin].include?(@user.role)
+    admin? || moderator? || regular_user?
   end
 end

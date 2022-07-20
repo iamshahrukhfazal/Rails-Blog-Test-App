@@ -1,6 +1,11 @@
 $("#exampleModalCenter").modal("hide")
-$("#post-message").empty().append("<div>Post Will be Published After Review</div>")
+
+$("#exampleFormControlTextarea2").val("")
+$("#form_title_input").val("")
+
+$("#post-message").empty().append(`<div><%= t "errors.review"%></div>`)
 
 <%if @post.errors.full_messages.length>0%>
-    $("#post-message").empty().append("<div>Post can't be Empty, Thank you!</div>")
+    $("#post-message").empty().append(`<div><%= t "errors.empty_feilds"%></div>`)
 <%end%>
+

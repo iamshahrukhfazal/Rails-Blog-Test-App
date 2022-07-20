@@ -33,6 +33,10 @@
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
+a{
+	list-style: none;
+}
+
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600,300);
 
 $brown: #215aaa;
@@ -40,8 +44,8 @@ $brown: #215aaa;
 .frame {
 	position: absolute;
 	top: 50%;
-	left: 50%;
-	width: 400px;
+	left: 40%;
+	width: 700px;
 	height: 400px;
 	margin-top: -200px;
 	margin-left: -200px;
@@ -58,9 +62,9 @@ $brown: #215aaa;
 .center {
 	position: absolute;
 	top: 50px;
-	left: 40px;
+	left: 180px;
 	height: 299px;
-	width: 320px;
+	width: 360px;
 	background: #fff;
 	border-radius: 3px;
 	overflow: hidden;
@@ -69,9 +73,10 @@ $brown: #215aaa;
 
 .profile {
 	float: left;
-	width: 200px;
+	width: 230px;
 	height: 320px;
 	text-align: center;
+
 
 	.image {
 		position: relative;
@@ -108,18 +113,14 @@ $brown: #215aaa;
 			height: 30px;
 			margin: 0 auto 10px auto;
 			background: none;
-			border: 1px solid $brown;
-			border-radius: 15px;
+			
 			font-size: 12px;
 			font-weight: 600;
 			box-sizing: border-box;
 			transition: all 0.3s ease-in-out;
-			color: $brown;
+		
 
-			&:hover {
-				background: $brown;
-				color: #fff;
-			}
+		
 		}
 	}
 }
@@ -129,7 +130,7 @@ $brown: #215aaa;
 
 	.box {
 		box-sizing: border-box;
-		width: 120px;
+		width: 90px;
 		height: 99px;
 		background: #6697c5;
 		text-align: center;

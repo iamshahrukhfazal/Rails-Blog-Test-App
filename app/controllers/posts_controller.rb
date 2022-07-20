@@ -2,77 +2,57 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_post, only: %i[show update destroy]
   skip_before_action :verify_authenticity_token, only: %i[search]
 
-  # GET /posts or /posts.json
   def index
     authorize Post
-    if current_user.role.eql? 'user'
-      @pagy, @posts = pagy(Post.where(status: 'published'), items: 5)
+    if current_user.role.eql? :user
+      @pagy, @posts = pagy(Post.where(status: CONSTANTS[:PUBLISHED]), items: 5)
     else
       @posts = Post.all
     end
-    @post = Post.new
-    @suggestion = Suggestion.new
   end
 
   # GET /posts/1 or /posts/1.json
   def show
     authorize Post
-    @report = Report.new
-    @suggestion = Suggestion.new
-    @comment = Comment.new
-    authorize Post
   end
 
-  # GET /posts/new
   def new
     authorize Post
-    @post = Post.new
-    @post.user = current_user
+    @post = current_user.posts.new
   end
 
-  # GET /posts/1/edit
-  def edit; end
-
-  # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params.merge!(status: 'unpublished'))
+    authorize Post
+    @post = Post.new(post_params)
     @post.user = current_user
+    @post.status = :unpublished
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to post_url(@post), notice: 'Post was successfully created.' }
+        Rails.logger.debug 'save'
       else
         format.html { render :new, status: :unprocessable_entity }
-
       end
-
       format.js
     end
   end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
   def update
+    authorize Post
     respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to post_url(@post), notice: t('errors.update_post') } if @post.update(post_params)
       format.js
     end
   end
 
-  # DELETE /posts/1 or /posts/1.json
   def destroy
+    authorize Post
+
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
       format.js
     end
   end

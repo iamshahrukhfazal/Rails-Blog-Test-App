@@ -3,18 +3,18 @@
 # Documentation for the Class
 class SuggestionPolicy < ApplicationPolicy
   def index?
-    %w[admin user modrator].include?(@user.role)
+    admin? || regular_user? || moderator?
   end
 
   def show?
-    %w[admin user].include?(@user.role)
+    admin? || regular_user?
   end
 
   def create?
-    %w[admin user].include?(@user.role)
+    admin? || regular_user?
   end
 
   def update?
-    %w[admin user].include?(@user.role)
+    admin? || regular_user?
   end
 end

@@ -1,35 +1,30 @@
 <div id="post_<%=post.id%>">
-
   <div class="blog-container">
-
     <div class="blog-header">
       <div class="blog-author--no-cover">
-        <h3><%= post.user.email%> | <%= post.status%> | <%= link_to "Post", post_path(post.id) %></h3> 
+        <h3 class="post-h3"><%= post.user.email%> | <%= post.status%> | <%= link_to "Post", post_path(post.id) %></h3> 
       </div>
       <%if current_user.role === "moderator"%>
-
         <%= form_with(model: post, local: false) do |form| %>
-          <div class="d-flex flex-col justify-content-end">
+          <div class="d-flex flex-col justify-content-end align-items-center">
               <div class="field">
                 <%= form.label :status %>
-                <%= form.select :status, Post.statuses%>
+                <%= form.select :status, options_for_select(Post.statuses.map { |key, value| [key.humanize, key] }), {prompt: "Select Status"}, class: "form-control" %>
+
               </div>
-              <div class="actions">
+              <div class="actions mt-4 pt-2 ml-2 mr-2">
                 <%= form.submit :class=>"btn btn-primary w-100" %>
               </div> 
-          </div>
+          </div> 
         <% end %>
       <%else%>
-
       <%end%>
     </div>
 
     <div class="blog-body">
       <div class="blog-title">
         <h1 class=""><%= link_to post.title, post %></h1>
-
       </div>
-
     </div>
 
     <div class="blog-footer">
@@ -47,6 +42,5 @@
             </svg><span class="numero"><%= post.comments.count%></span></a></li>
       </ul>
     </div>
-
   </div>
 </div>

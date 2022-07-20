@@ -3,14 +3,19 @@
 class ReportsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_report, only: %i[destroy]
+  before_action :set_reportable, only: %i[create]
 
   def create
-    @report = current_user.reports.new(report_params)
     authorize Report
+    # @report = current_user.reports.new(report_params)
+
+    @report = @reportable.reports.new(report_params)
+    @report.user_id = current_user.id
+
     respond_to do |format|
       if @report.save
+        @post = Report.find(id: @report.reportable_id)
         @post = @report.reportable
-        format.html { redirect_to post_path(params[:post_id]), notice: 'Comment was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -22,25 +27,26 @@ class ReportsController < ApplicationController
     authorize Report
     @post = @report.reportable
     @report.destroy
-
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
       format.js
     end
   end
 
   def all_reported_post
-    @reported_posts = Report.remove_post_dup
     authorize Report
+    @reported_posts = Report.remove_post_duplicate
   end
 
   def all_reported_comment
-    @reported_comments = Report.remove_comment_dup
     authorize Report
+    @reported_comments = Report.remove_comment_duplicate
   end
 
   private
+
+  def set_reportable
+    @reportable = report_params[:reportable_type].constantize.find(report_params[:reportable_id])
+  end
 
   def set_report
     @report = current_user.reports.find(params[:id])

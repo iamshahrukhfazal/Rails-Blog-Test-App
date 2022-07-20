@@ -9,14 +9,10 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @report = Report.new
-    @comment = Comment.new(comment_params)
-    @comment.user = current_user
-
+    @comment = current_user.comments.new(comment_params)
     respond_to do |format|
       if @comment.save
         @post = @comment.post
-        format.html { redirect_to post_path(params[:post_id]), notice: 'Comment was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -27,8 +23,6 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
       format.js
     end
   end
@@ -40,6 +34,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:content, :parent_id).merge(post_id: params[:post_id])
+    params.require(:comment).permit(:content, :reply_id).merge(post_id: params[:post_id])
   end
 end

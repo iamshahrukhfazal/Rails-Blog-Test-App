@@ -9,28 +9,24 @@
         <a class="nav-link" href="<%=root_path%>">Home <span class="sr-only">(current)</span></a>
       </li>
       <%if current_user%>
-
-        <%if current_user.role === "user"%>
+        <%if current_user.role === "regular_user"%>
           <li class="nav-item">
             <%= link_to "All My Suggestion",suggestion_path(current_user.id),class:"nav-link" %>
           </li>
 
-          <li class="nav-item"><a class="nav-link" href="/userprofile">User Profile</a></li>
-    
-
+          <li class="nav-item"><a class="nav-link" href="/users/user_profile">User Profile</a></li>
         <%end%>
-
       <%end%>
          <%if current_user && current_user.role==="admin"%>
             <a class="nav-link" href="/admin">Admin Dashboard</a>
          <%end%>
       <%if current_user && current_user.role==="moderator"%>
           <li class="nav-item">
-            <a class="nav-link" href="/reportedpost">Reported Post</a>
+            <a class="nav-link" href="<%= reported_post_reports_path%>">Reported Post</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="reportedcomment">Reported Comments</a>
+            <a class="nav-link" href="<%= reported_comment_reports_path%>">Reported Comments</a>
           </li>
       <%else%>
         <div></div>
@@ -50,16 +46,10 @@
         <li class="nav-item">
           <%= link_to "Sign In", new_user_session_path, class:"nav-link"%>
         </li>
-
       <%end%>
-
-
         <%if current_user%>
-       
-
-          <%if current_user.role === "user"%>
+          <%if current_user.role === "regular_user"%>
           <%end%>
-
       <%end%>
     </ul>
   </div>
@@ -68,8 +58,7 @@
         <li class="p-2 mr-2 px-4 nav-tags"><%=current_user.role%></li>
       <li class="p-2 px-4 nav-tags"><%=current_user.email%></li>
     </div>
-    <%if current_user.role === "user"%>    
+    <%if current_user.role === "regular_user"%>    
     <%end%>
 <%end%>
 </nav>
-

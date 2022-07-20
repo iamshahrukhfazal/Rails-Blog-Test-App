@@ -3,13 +3,17 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[destroy]
+  before_action :set_likeable, only: %i[create]
 
   def create
-    @report = Report.new
-    @post = current_user.likes.new(like_params)
+    # constatize
+    @like = @likeable.likes.new(like_params)
+    @like.user_id = current_user.id
+
     respond_to do |format|
-      if @post.save
-        @like_class = (@post.likeable.class.to_s).eql? 'Comment'
+      if @like.save
+        @post = Post.find(id: @like.likeable_id)
+        # @like_class = (@post.likeable.class.to_s).eql?(CONSTANTS[:COMMENT])
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -18,19 +22,22 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @report = Report.new
-    @like_class = (@post.likeable.class.to_s).eql? 'Comment'
+    @like_class = (@post.likeable.class.to_s).eql?(CONSTANTS[:COMMENT])
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.js
     end
   end
 
   private
 
+  def set_likeable
+    @likeable = like_params[:likeable_type].constantize.find(like_params[:likeable_id])
+  end
+
   def set_post
-    @post = current_user.likes.find(params[:id])
+    # @post = current_user.like_content.find(params[:id])
+    @post = Like.find_by(id: params[:id], user_id: current_user.id)
   end
 
   def like_params

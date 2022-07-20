@@ -3,7 +3,6 @@
     <div class="card-header">
       <h2 class="card-title text-center"></h2>
       <div class="d-flex justify-content-end">
-
         <%if current_user.id == @post.user.id%>
             <%= link_to 'Edit', edit_post_path(@post) ,:class=>"btn btn-primary active mr-3"%> 
         <%else%>
@@ -16,12 +15,9 @@
 </div>
 
 <div class="p-2">
-
     <p class="post_title">
-    
       <%= @post.title %>
     </p>
-
     <div class="tags-post ">
       <strong>Status:</strong>
       <div class="ml-2 tags-post-cont"> <%= @post.status %></div>
@@ -30,11 +26,8 @@
     <strong>Content:</strong>
       <%= @post.content %>
     </p>
-
-  
     <div class="d-flex align-items-center">
-        
-      <%if current_user.role ==="user"%>
+      <%if current_user.role ==="regular_user"%>
           <button type="button" class="btn btn-primary flex justify-center" data-toggle="modal" data-target="#suggestionModalCenter">
               Create Suggestion 
           </button>
@@ -43,13 +36,7 @@
       <div id="post_suggeston_counts"> (<a id="post_suggeston_count" href="<%= post_suggestions_path(@post) %>"><%= @post.suggestions.count%> Post Suggestion</a>)</div>
     </div>
   </div>
-
-  
 </div>
-
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="suggestionModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -70,7 +57,7 @@
   </div>
 </div>
 
-<%if current_user.role==="user"%>
+<%if current_user.role==="regular_user"%>
     <div class="like-report mt-2">
         <div id="show-post-like d-inline w-15">
           <%=render partial: "likes/likeBtn", locals:{likeable:@post}%>
@@ -85,25 +72,21 @@
   <hr/>
 
 <div>
-
-  <%if current_user.role==="user"%>
+  <%if current_user.role==="regular_user"%>
   <div>
     <strong>
     Post Comments
     <strong>
       <div id="post_comment">
         <div>
-              <%= render @post.comments.where(parent_id: nil).order(id: :desc)%>
+              <%= render @post.comments.where(reply_id: nil).order(id: :desc)%>
         </div>
       </div>
       <div>
         <%= render partial:"comments/form", locals:{post:@post, parent: nil} %>
       </div>
-
   </div>
-
 <%else%>
-
 
 <%end%>
 </div>

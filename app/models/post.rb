@@ -2,8 +2,6 @@
 
 # Doc for the class
 class Post < ApplicationRecord
-  enum status: { published: 'published', unpublished: 'unpublished' }
-
   belongs_to :user
 
   has_many :comments, dependent: :destroy
@@ -11,18 +9,14 @@ class Post < ApplicationRecord
   has_many :reports, as: :reportable, dependent: :destroy
   has_many :suggestions, dependent: :destroy
 
-  validates :content, presence: true
-  validates :title, presence: true
+  validates :content, :title, presence: true
 
   has_rich_text :content
 
+  enum status: { published: 0, unpublished: 1 }
+
+  scope :latest, -> { where(status: CONSTANTS[:PUBLISHED]).order(updated_at: :desc).last(10) }
   scope :search_by_field_substring, lambda { |query|
     where('title ILIKE ?', "%#{query}%")
   }
-
-  def self.last_posts
-    Post.where(status: 'published').last(10).sort_by(&:updated_at).reverse
-  end
-
- 
 end
