@@ -1,0 +1,21 @@
+<%= form_with(model: Post.new, local: false) do |form| %>
+
+
+   <div class="field">
+    <%= form.label :title %>
+    <input name="post[title]" class="form-control" placeholder="Enter Title" id="form_title_input"/>
+  </div>
+
+    <div class="field">
+    <%= form.label :content %>
+    <%= form.rich_text_area :content, :class=>"form-control", :id=>"exampleFormControlTextarea2", :rows=>"3"%>
+  </div>
+
+  <div class="field">
+ 
+    <input hidden type="text" name="post[status]" value="<%=Post.statuses[1]%>"/>
+  </div>
+ <div class="actions">
+    <%= form.submit :class=>"btn btn-primary w-100" %>
+  </div> 
+<% end %>
